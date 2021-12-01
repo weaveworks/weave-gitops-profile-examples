@@ -1,0 +1,109 @@
+apiVersion: v1
+entries:
+  dex:
+  - annotations:
+      weave.works/links: |
+        - name: Chart Sources
+          url: https://github.com/dexidp/helm-charts
+        - name: Upstream Project
+          url: https://github.com/dexidp/dex
+      weave.works/operator: "true"
+      weave.works/profile: dex
+      weave.works/profile-ci: |
+        - "gke"
+        - "kind"
+    apiVersion: v2
+    created: "2021-12-01T18:52:06.544473569Z"
+    dependencies:
+    - condition: dex.enabled
+      name: dex
+      repository: https://charts.dexidp.io
+      version: 0.6.3
+    description: A Weaveworks Helm chart for OpenID Connect (OIDC)
+    digest: 1128dd944a5914aac2d339592a94d8e9fc0dff03548fafb964366291f46216c5
+    home: https://github.com/weaveworks/profiles-catalog
+    icon: https://dexidp.io/img/logos/dex-horizontal-color.png
+    keywords:
+    - dex
+    - oidc
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: dex
+    sources:
+    - https://github.com/dexidp/helm-charts
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/dex-0.0.8/dex-0.0.8.tgz
+    version: 0.0.8
+  magalix-agent:
+  - annotations:
+      weave.works/category: Policy
+      weave.works/links: |
+        - name: Upstream Project
+          url: https://github.com/MagalixCorp/magalix-agent
+      weave.works/operator: "true"
+      weave.works/profile: magalix
+    apiVersion: v2
+    created: "2021-12-01T18:52:06.870294848Z"
+    description: A Weaveworks Helm chart for Magalix policy agent
+    digest: 90bc3119eb1d75e5e795f7bd36561bcd6ef24228c9d70650a4ee4e0c9cf0aa41
+    home: https://github.com/weaveworks/profiles-catalog
+    icon: https://www.magalix.com/hubfs/Imported%20images/logo-02.png%3Fwidth=560%26name=logo-02-Dec-18-2020-11-24-41-75-AM.png
+    keywords:
+    - magalix
+    - policy
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: magalix-agent
+    sources:
+    - https://github.com/MagalixCorp/magalix-agent
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/magalix-agent-0.0.12/magalix-agent-0.0.12.tgz
+    version: 0.0.12
+  prometheus:
+  - annotations:
+      weave.works/category: Observability
+      weave.works/links: |
+        - name: Chart Sources
+          url: https://github.com/prometheus-community/helm-charts
+        - name: Upstream Project
+          url: https://github.com/prometheus-operator/kube-prometheus
+      weave.works/operator: "true"
+      weave.works/profile: prometheus
+      weave.works/profile-ci: |
+        - "gke"
+        - "kind"
+    apiVersion: v2
+    created: "2021-12-01T18:52:07.077664035Z"
+    dependencies:
+    - condition: kube-prometheus-stack.enabled
+      name: kube-prometheus-stack
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 19.2.2
+    description: A Weaveworks Helm chart for observability
+    digest: bf9720cb2e6d3ab66f8e1295cfeb9b9974aa6b326422fba6ddaa99318a50acb9
+    home: https://github.com/weaveworks/profiles-catalog
+    icon: https://raw.githubusercontent.com/prometheus/prometheus.github.io/master/assets/prometheus_logo-cb55bb5c346.png
+    keywords:
+    - operator
+    - prometheus
+    - kube-prometheus
+    - observability
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: prometheus
+    sources:
+    - https://github.com/prometheus-community/helm-charts
+    - https://github.com/prometheus-operator/kube-prometheus
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/prometheus-0.0.7/prometheus-0.0.7.tgz
+    version: 0.0.7
+generated: "2021-12-01T18:52:06.205575002Z"
