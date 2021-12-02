@@ -23,7 +23,8 @@ spec:
     metadata:
       name: ${CLUSTER_NAME}
       namespace: default
-      weave.works/capi: bootstrap
+      labels:
+        weave.works/capi: bootstrap
     spec:
       clusterNetwork:
         pods:
@@ -47,6 +48,7 @@ spec:
       region: ${AWS_REGION}
       sshKeyName: default
       version: ${KUBERNETES_VERSION}
+      eksClusterName: ${CLUSTER_NAME}
     
   - apiVersion: cluster.x-k8s.io/v1beta1
     kind: MachinePool
