@@ -20,7 +20,7 @@ Docker Instructions
 Then continue with How to: Upgrade to Weave Gitops Enterprise
 * https://docs.gitops.weave.works/docs/enterprise/upgrading
 
-For the Install a CAPI provider section, specific information and/or credentials may be required for your chosen provider. The documentation for the current Cluster API providers is here. For testing during the trial, Weaveworks recommends using a Kind cluster.
+For the Install a CAPI provider section, specific information and/or credentials may be required for your chosen provider. The documentation for the current [Cluster API providers is here](https://cluster-api.sigs.k8s.io/reference/providers.html). For testing during the trial, Weaveworks recommends using a Kind cluster.
 
 Additional, but optional, configuration steps to utilize a full SQL database (Postgres) can be performed.
 https://docs.gitops.weave.works/docs/enterprise/configuration
