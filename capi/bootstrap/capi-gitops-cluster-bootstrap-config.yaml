@@ -11,7 +11,7 @@ spec:
     generateName: "run-gitops-{{ .ObjectMeta.Name }}"
     spec:
       containers:
-        - image: ghcr.io/palemtnrider/wego-app:v0.5.0-rc2
+        - image: docker.io/foot/scratch-public:wego-app-0.5.0-rc2
           name: gitops-install
           resources: {}
           volumeMounts:
@@ -29,7 +29,7 @@ spec:
             - name: KUBECONFIG
               value: "/etc/gitops/value"
             - name: GITOPS_REPO
-              value: "ssh://git@github.com/weavegitops/demo3-repo.git"
+              value: "ssh://git@github.com/weavegitops/demo-repo.git"
             - name: GITHUB_TOKEN
               valueFrom:
                 secretKeyRef:

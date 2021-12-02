@@ -6,5 +6,5 @@ metadata:
   namespace: wego-system
 spec:
   interval: 1m
-  url: https://helm.repository/path
+  url: https://weaveworks.github.io/weave-gitops-profile-examples/
 status: {}
