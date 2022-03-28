@@ -1,0 +1,232 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    agent-admission: ignore
+    app.kubernetes.io/name: "{{ .Values.namespace }}"
+    app.kubernetes.io/version: "1"
+    app.kubernetes.io/component: "namespace"
+    app.kubernetes.io/tier: "backend"
+  name: {{ .Values.namespace }}
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: policy-agent
+  namespace: {{ .Values.namespace }}
+  labels:
+    app.kubernetes.io/name: "policy-agent"
+    app.kubernetes.io/version: "1"
+    app.kubernetes.io/component: "service-account"
+    app.kubernetes.io/tier: "backend"
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: policy-agent
+  labels:
+    app.kubernetes.io/name: "policy-agent"
+    app.kubernetes.io/version: "1"
+    app.kubernetes.io/component: "cluster-role"
+    app.kubernetes.io/tier: "backend"
+rules:
+- apiGroups:
+  - 'magalix.com'
+  resources:
+  - 'policies'
+  verbs:
+  - '*'
+- apiGroups:
+  - ""
+  - "events.k8s.io"
+  resources:
+  - events
+  verbs:
+  - create
+  - patch
+  - update
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: policy-agent
+  labels:
+    app.kubernetes.io/name: "policy-agent"
+    app.kubernetes.io/version: "1"
+    app.kubernetes.io/component: "cluster-role-binding"
+    app.kubernetes.io/tier: "backend"
+subjects:
+- kind: ServiceAccount
+  name: policy-agent
+  namespace: {{ .Values.namespace }}
+roleRef:
+  kind: ClusterRole
+  name: policy-agent
+  apiGroup: rbac.authorization.k8s.io
+---
+{{if eq .Values.usePersistence true }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: policy-agent
+  namespace: {{ .Values.namespace }}
+spec:
+  storageClassName: {{ .Values.storageClassName }}
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.claimStorage }}
+---
+{{end}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: policy-agent
+  namespace: {{ .Values.namespace }}
+data:
+  AGENT_ACCOUNT_ID: {{ .Values.accountId }}
+  AGENT_CLUSTER_ID: {{ .Values.clusterId }}
+
+  {{- range $key, $val := .Values.config }}
+  {{ $key }}: "{{ $val }}"
+  {{- end }}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: policy-agent
+  namespace: {{ .Values.namespace }}
+type: kubernetes.io/tls
+data:
+  tls.crt: |
+      {{ .Values.certificate | b64enc }}
+  tls.key: |
+      {{ .Values.key | b64enc }}
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: policy-agent
+  namespace: {{ .Values.namespace }}
+  labels:
+    app.kubernetes.io/name: "policy-agent"
+    app.kubernetes.io/instance: "policy-agent"
+    app.kubernetes.io/part-of: "policy-agent"
+    app.kubernetes.io/managed-by: "weaveworks"
+    app.kubernetes.io/version: "1"
+    app.kubernetes.io/component: "policy-agent"
+    app.kubernetes.io/tier: "backend"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name:  policy-agent
+  template:
+    metadata:
+      labels:
+        name: policy-agent
+    spec:
+      serviceAccountName: policy-agent
+      restartPolicy: Always
+      containers:
+        - image: {{.Values.image}}
+          imagePullPolicy: Always
+          name: policy-agent
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+            privileged: false
+            procMount: Default
+            runAsGroup: 1000
+            runAsUser: 1000
+          resources:
+            limits:
+              memory: 750Mi
+              cpu: 2
+            requests:
+              memory: 200Mi
+              cpu: 100m
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 9000
+            initialDelaySeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: 9000
+            initialDelaySeconds: 5
+          ports:
+          - containerPort: 8443
+            name: webhook
+            protocol: TCP
+          envFrom:
+          - configMapRef:
+              name: policy-agent
+          volumeMounts:
+          - name: cert
+            mountPath: /certs
+            readOnly: true
+          {{- if eq .Values.usePersistence true }}
+          - name: validation-results
+            mountPath: {{.Values.sinkDir}}
+          {{- end}}
+      volumes:
+      - name: cert
+        secret:
+          secretName: policy-agent
+      {{- if eq .Values.usePersistence true }}
+      - name: validation-results
+        persistentVolumeClaim:
+          claimName: policy-agent
+      {{- end}}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: policy-agent
+  namespace: {{ .Values.namespace }}
+spec:
+  ports:
+  - name: https-admission-webhook
+    port: 443
+    targetPort: webhook
+  selector:
+    name:  policy-agent
+---
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingWebhookConfiguration
+metadata:
+  name: policy-agent
+  labels:
+    app.kubernetes.io/name: policy-agent
+webhooks:
+  - name: admission.agent.weaveworks
+    clientConfig:
+      service:
+        namespace: {{ .Values.namespace }}
+        name: policy-agent
+        path: /admission
+      caBundle: {{ .Values.caCertificate | b64enc }}
+    rules:
+      - operations: [ "CREATE", "UPDATE" ]
+        apiVersions: ["*"]
+        apiGroups: ["", "extensions", "apps", "batch", "metrics.k8s.io", "networking.k8s.io"]
+        resources: ["nodes", "nodes/stats", "nodes/metrics", "nodes/proxy", "namespaces", "pods", "limitranges", "deployments", "replicationcontrollers", "statefulsets", "daemonsets", "replicasets", "jobs", "cronjobs", "ingresses", "ingressclasses", "services", "networkpolicies"]
+      - operations: [ "CREATE", "UPDATE" ]
+        apiVersions: ["*"]
+        apiGroups: ["", "rbac.authorization.k8s.io", "storage.k8s.io"]
+        resources: ["clusterrolebindings", "clusterroles", "roles", "rolebindings", "persistentvolumes", "persistentvolumeclaims", "storageclasses"]
+    timeoutSeconds: 5
+    failurePolicy: {{ .Values.failurePolicy }}
+    admissionReviewVersions: ["v1", "v1beta1"]
+    sideEffects: None
+    matchPolicy: Equivalent
+    namespaceSelector:
+      matchExpressions:
+      - key: agent-admission
+        operator: NotIn
+        values: ["ignore"]
