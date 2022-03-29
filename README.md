@@ -25,3 +25,4 @@ For the Install a CAPI provider section, specific information and/or credentials
 Additional, but optional, configuration steps to utilize a full SQL database (Postgres) can be performed.
 https://docs.gitops.weave.works/docs/next/enterprise/configuration
 
+rev: 2022-03-29
