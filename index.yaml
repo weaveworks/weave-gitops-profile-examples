@@ -37,34 +37,6 @@ entries:
     urls:
     - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/dex-0.0.8/dex-0.0.8.tgz
     version: 0.0.8
-  magalix-agent:
-  - annotations:
-      weave.works/category: Policy
-      weave.works/links: |
-        - name: Upstream Project
-          url: https://github.com/MagalixCorp/magalix-agent
-      weave.works/operator: "true"
-      weave.works/profile: magalix
-    apiVersion: v2
-    created: "2021-12-01T18:52:06.870294848Z"
-    description: A Weaveworks Helm chart for Magalix policy agent
-    digest: 90bc3119eb1d75e5e795f7bd36561bcd6ef24228c9d70650a4ee4e0c9cf0aa41
-    home: https://github.com/weaveworks/profiles-catalog
-    icon: https://www.magalix.com/hubfs/Imported%20images/logo-02.png%3Fwidth=560%26name=logo-02-Dec-18-2020-11-24-41-75-AM.png
-    keywords:
-    - magalix
-    - policy
-    kubeVersion: '>=1.16.0-0'
-    maintainers:
-    - email: support@weave.works
-      name: Weaveworks
-    name: magalix-agent
-    sources:
-    - https://github.com/MagalixCorp/magalix-agent
-    type: application
-    urls:
-    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/magalix-agent-0.0.12/magalix-agent-0.0.12.tgz
-    version: 0.0.12
   prometheus:
   - annotations:
       weave.works/category: Observability
