@@ -56,16 +56,15 @@ spec:
       value:
   code: |-
     package weave.advisor.podSecurity.privilegeEscalation
+    import future.keywords.in
 
-    exclude_namespace := input.parameters.exclude_namespace
+    excluded_namespaces := input.parameters.exclude_namespace
     allow_privilege_escalation := input.parameters.allow_privilege_escalation
     exclude_label_key := input.parameters.exclude_label_key
     exclude_label_value := input.parameters.exclude_label_value
 
     violation[result] {
-      some i
-      isExcludedNamespace == false
-      not exclude_namespace == controller_input.metadata.namespace
+      not controller_input.metadata.namespace in excluded_namespaces
       not exclude_label_value == controller_input.metadata.labels[exclude_label_key]
       containers := controller_spec.containers[i]
       allow_priv := containers.securityContext.allowPrivilegeEscalation
@@ -77,10 +76,6 @@ spec:
         "recommended_value": allow_privilege_escalation
       }
     }
-
-    isExcludedNamespace  = true {
-      input.review.object.metadata.namespace == exclude_namespace
-    }else = false {true}
 
     is_array_contains(array,str) {
       array[_] = str
@@ -148,14 +143,15 @@ spec:
       value:
   code: |-
     package weave.advisor.podSecurity.runningAsRoot
-
-    exclude_namespace := input.parameters.exclude_namespace
+    import future.keywords.in
+    
+    excluded_namespaces := input.parameters.exclude_namespace
     exclude_label_key := input.parameters.exclude_label_key
     exclude_label_value := input.parameters.exclude_label_value
 
     # Check for missing securityContext.runAsNonRoot (missing in both, pod and container)
     violation[result] {
-    	not exclude_namespace == controller_input.metadata.namespace
+    	not controller_input.metadata.namespace in excluded_namespaces
     	not exclude_label_value == controller_input.metadata.labels[exclude_label_key]
 
     	controller_spec.securityContext
@@ -178,7 +174,7 @@ spec:
     # Container security context
     # Check if containers.securityContext.runAsNonRoot exists and = false
     violation[result] {
-    	not exclude_namespace == controller_input.metadata.namespace
+    	not controller_input.metadata.namespace in excluded_namespaces
     	not exclude_label_value == controller_input.metadata.labels[exclude_label_key]
 
     	some i
@@ -197,7 +193,7 @@ spec:
     # Pod security context
     # Check if spec.securityContext.runAsNonRoot exists and = false
     violation[result] {
-    	not exclude_namespace == controller_input.metadata.namespace
+    	not controller_input.metadata.namespace in excluded_namespaces
     	not exclude_label_value == controller_input.metadata.labels[exclude_label_key]
 
     	controller_spec.securityContext
@@ -273,14 +269,15 @@ spec:
       value:
   code: |-
     package weave.advisor.podSecurity.enforce_ro_fs
+    import future.keywords.in
 
     read_only = input.parameters.read_only
-    exclude_namespace := input.parameters.exclude_namespace
+    excluded_namespaces := input.parameters.exclude_namespace
     exclude_label_key := input.parameters.exclude_label_key
     exclude_label_value := input.parameters.exclude_label_value
 
     violation[result] {
-      not exclude_namespace == controller_input.metadata.namespace
+      not controller_input.metadata.namespace in excluded_namespaces
       not exclude_label_value == controller_input.metadata.labels[exclude_label_key]
       some i
       containers := controller_spec.containers[i]
