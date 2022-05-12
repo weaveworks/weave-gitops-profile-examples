@@ -21,6 +21,7 @@ config:
   AGENT_ENABLE_K8S_EVENTS_SINK: "true"
   # Enable pushing violations to flux notification controller
   # AGENT_FLUX_NOTIFICATION_SINK_ADDR: <flux-notification-controller-svc>
+  AGENT_DISABLE_ADMISSION: "1"
 
 accountId: ""
 clusterId: ""
