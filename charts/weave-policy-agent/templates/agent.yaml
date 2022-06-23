@@ -1,15 +1,4 @@
 apiVersion: v1
-kind: Namespace
-metadata:
-  labels:
-    agent-admission: ignore
-    app.kubernetes.io/name: "{{ .Values.namespace }}"
-    app.kubernetes.io/version: "1"
-    app.kubernetes.io/component: "namespace"
-    app.kubernetes.io/tier: "backend"
-  name: {{ .Values.namespace }}
----
-apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: policy-agent
@@ -260,3 +249,6 @@ webhooks:
       - key: agent-admission
         operator: NotIn
         values: ["ignore"]
+      - key: kubernetes.io/metadata.name
+        operator: NotIn
+        values: [{{ .Release.Namespace }}]
