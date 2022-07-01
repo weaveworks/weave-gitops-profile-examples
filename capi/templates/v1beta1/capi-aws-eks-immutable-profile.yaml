@@ -1,10 +1,13 @@
 apiVersion: capi.weave.works/v1alpha1
 kind: CAPITemplate
 metadata:
-  name: aws-eks-dev
+  name: aws-eks-profile-set
   namespace: default
+  annotations:
+    capi.weave.works/profile-0: '{"name": "prometheus", "version": "0.0.7" }'
+    capi.weave.works/profile-1: '{"name": "dex", "version": "0.0.8", "values": "service:\n  enabled: true" }'
 spec:
-  description: AWS EKS Development Cluster 
+  description: AWS EKS with fix profile preset
   params:
     - name: CLUSTER_NAME
       description: The name for this cluster.
