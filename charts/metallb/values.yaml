@@ -10,9 +10,9 @@ configInline:
     - name: default
       protocol: layer2
       # replace the address with a subnet address range for your environment
-      # by adding 100 to the control plane IP.
+      # by adding 200 to the control plane IP.
       # For example for demo2, LM30 would be:
       # control plane: 172.16.20.30/32
-      # MetalLB address: 172.16.20.130/32
+      # MetalLB address: 172.16.20.230/32
       addresses:
-      - 172.16.20.151/32
+      - 172.16.20.251/32
