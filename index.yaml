@@ -40,6 +40,42 @@ entries:
     urls:
     - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/cert-manager-0.0.7/cert-manager-0.0.7.tgz
     version: 0.0.7
+  clusterissuer:
+  - annotations:
+      weave.works/category: Certificate
+      weave.works/layer: layer-1
+      weave.works/links: |
+        - name: Chart Sources
+          url: https://charts.jetstack.io
+        - name: Upstream Project
+          url: https://github.com/jetstack/cert-manager
+      weave.works/operator: "false"
+      weave.works/profile: clusterissuer
+      weave.works/profile-ci: |
+        - "gke"
+        - "kind"
+    apiVersion: v2
+    created: "2022-08-12T17:08:55.238838556Z"
+    description: A Weaveworks Helm chart for a ClusterIssuer
+    digest: 13ae5759645fb79d2a8ecffc52b69e115a2c6c7b2cbd69c8815806d184016882
+    home: https://github.com/weaveworks/profiles-catalog
+    icon: https://raw.githubusercontent.com/jetstack/cert-manager/master/logo/logo.png
+    keywords:
+    - cert-manager
+    - kube-lego
+    - letsencrypt
+    - tls
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: clusterissuer
+    sources:
+    - https://charts.jetstack.io
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/clusterissuer-0.0.1/clusterissuer-0.0.1.tgz
+    version: 0.0.1
   dex:
   - annotations:
       weave.works/links: |
