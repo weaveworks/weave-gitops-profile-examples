@@ -1,5 +1,0 @@
-clusterissuer:
-  name: letsencrypt-prod
-  email: lutz@weave.works
-  server: https://acme-v02.api.letsencrypt.org/directory
-  secretKeyRef: letsencrypt-prod-account-key
