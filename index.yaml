@@ -363,6 +363,34 @@ entries:
       weave.works/operator: "true"
       weave.works/profile: weave-policy
     apiVersion: v1
+    appVersion: 0.4.3
+    created: "2022-08-16T07:25:34.497343281Z"
+    description: A Weaveworks Helm chart for Kubernetes to configure the policy agent
+    digest: 199e7885e6409c068c99c272897bf0ab4df34a9ad8e91e3c3f71bd4d9235ef62
+    home: https://github.com/weaveworks/weave-gitops-profile-examples
+    icon: https://www.magalix.com/hubfs/Imported%20images/logo-02.png%3Fwidth=560%26name=logo-02-Dec-18-2020-11-24-41-75-AM.png
+    keywords:
+    - policy
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: weave-policy-agent
+    sources:
+    - https://github.com/weaveworks/policy-agent
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/weave-policy-agent-0.4.0/weave-policy-agent-0.4.0.tgz
+    version: 0.4.0
+  - annotations:
+      weave.works/category: Policy
+      weave.works/layer: layer-1
+      weave.works/links: |
+        - name: Upstream Project
+          url: https://github.com/weaveworks/policy-agent
+      weave.works/operator: "true"
+      weave.works/profile: weave-policy
+    apiVersion: v1
     appVersion: "1.0"
     created: "2022-07-07T11:41:10.078098007Z"
     description: A Weaveworks Helm chart for Kubernetes to configure the policy agent
