@@ -77,6 +77,45 @@ entries:
     urls:
     - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/dex-0.0.8/dex-0.0.8.tgz
     version: 0.0.8
+  flagger:
+  - annotations:
+      weave.works/category: Deployment
+      weave.works/layer: layer-2
+      weave.works/links: |
+        - name: Chart Sources
+          url:  https://flagger.app
+        - name: Upstream Project
+          url: https://github.com/fluxcd/flagger/
+      weave.works/profile: flagger
+      weave.works/profile-ci: |
+        - "gke"
+        - "kind"
+    apiVersion: v2
+    created: "2022-08-17T13:32:54.403514058Z"
+    dependencies:
+    - name: flagger
+      repository: https://flagger.app
+      version: 1.21.0
+    description: A Weaveworks Helm chart for the Flagger Profile
+    digest: dcc0472ed4cea5fdd440dd191bb7217262428b1d67e7df982743542990748440
+    home: https://github.com/weaveworks/profiles-catalog
+    icon: https://linkerd.io/images/logo-only-200h.png
+    keywords:
+    - network
+    - canary
+    - deployment
+    - flagger
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: flagger
+    sources:
+    - https://flagger.app
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/flagger-0.0.2/flagger-0.0.2.tgz
+    version: 0.0.2
   ingress-nginx:
   - annotations:
       weave.works/category: Ingress
