@@ -1,0 +1,4 @@
+flagger:
+  prometheus:
+    install: true
+  meshProvider: nginx
