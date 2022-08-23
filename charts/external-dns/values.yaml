@@ -1,0 +1,36 @@
+external-dns:
+  ## AWS configuration to be set via arguments/env. variables
+  ##
+  aws:
+    ## AWS credentials
+    ## @param aws.credentials.secretKey When using the AWS provider, set `aws_secret_access_key` in the AWS credentials (optional)
+    ## @param aws.credentials.accessKey When using the AWS provider, set `aws_access_key_id` in the AWS credentials (optional)
+    ## @param aws.credentials.mountPath When using the AWS provider, determine `mountPath` for `credentials` secret
+    ##
+    credentials:
+      secretKey: ""
+      accessKey: ""
+      ## Before external-dns 0.5.9 home dir should be `/root/.aws`
+      ##
+      mountPath: "/.aws"
+      ## @param aws.credentials.secretName Use an existing secret with key "credentials" defined.
+      ## This ignores aws.credentials.secretKey, and aws.credentials.accessKey
+      ##
+      secretName: ""
+    ## @param aws.region When using the AWS provider, `AWS_DEFAULT_REGION` to set in the environment (optional)
+    ##
+    region: "us-east-1"
+
+    ## @param aws.assumeRoleArn When using the AWS provider, assume role by specifying --aws-assume-role to the external-dns daemon
+    ##
+    assumeRoleArn: ""
+    ## @param aws.roleArn Specify role ARN to the external-dns daemon
+    ##
+    roleArn: ""
+
+    ## @param aws.zoneTags When using the AWS provider, filter for zones with these tags
+    ##
+    zoneTags: [ ]
+    ## @param aws.preferCNAME When using the AWS provider, replaces Alias records with CNAME (options: true, false)
+    ##
+    preferCNAME: ""
