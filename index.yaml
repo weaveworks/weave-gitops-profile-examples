@@ -91,6 +91,47 @@ entries:
         - "gke"
         - "kind"
     apiVersion: v2
+    created: "2022-08-29T10:17:01.268757708Z"
+    dependencies:
+    - name: flagger
+      repository: https://flagger.app
+      version: 1.21.0
+    - name: loadtester
+      repository: https://flagger.app
+      version: 0.22.0
+    description: A Weaveworks Helm chart for the Flagger Profile
+    digest: 91d349201f40db05c43c8b9966ca4043860c14dce416f13e3792c34cd15402cf
+    home: https://github.com/weaveworks/profiles-catalog
+    icon: https://linkerd.io/images/logo-only-200h.png
+    keywords:
+    - network
+    - canary
+    - deployment
+    - flagger
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: flagger
+    sources:
+    - https://flagger.app
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/flagger-0.0.4/flagger-0.0.4.tgz
+    version: 0.0.4
+  - annotations:
+      weave.works/category: Deployment
+      weave.works/layer: layer-2
+      weave.works/links: |
+        - name: Chart Sources
+          url:  https://flagger.app
+        - name: Upstream Project
+          url: https://github.com/fluxcd/flagger/
+      weave.works/profile: flagger
+      weave.works/profile-ci: |
+        - "gke"
+        - "kind"
+    apiVersion: v2
     created: "2022-08-22T13:53:31.779134428Z"
     dependencies:
     - name: flagger
@@ -306,6 +347,32 @@ entries:
     type: application
     urls:
     - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/metallb-0.0.1/metallb-0.0.1.tgz
+    version: 0.0.1
+  podinfo:
+  - annotations:
+      weave.works/category: Application
+      weave.works/layer: layer-2
+      weave.works/links: |
+        - name: Chart Sources
+          url: https://github.com/weaveworks/weave-gitops-profile-examples
+        - name: Upstream Project
+          url: https://github.com/stefanprodan/podinfo
+      weave.works/profile: podinfo
+    apiVersion: v2
+    created: "2022-08-29T10:17:01.587257713Z"
+    description: A Weaveworks Helm chart for podinfo
+    digest: f1c5c317207167a220abf1ff608508cf0152da03f6889fe7f0d92122ab438f7e
+    home: https://github.com/weaveworks/weave-gitops-profile-examples
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: podinfo
+    sources:
+    - https://github.com/stefanprodan/podinfo
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/podinfo-0.0.1/podinfo-0.0.1.tgz
     version: 0.0.1
   prometheus:
   - annotations:
