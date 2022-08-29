@@ -1,3 +1,5 @@
+deployment:
+  image: ghcr.io/stefanprodan/podinfo:6.0.0
 # canary resource configuration
 canary:
   loadtester:

@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
       - name: podinfod
-        image: enekofb/podinfo:v2
+        image: "{{ .Values.deployment.image }}"
         imagePullPolicy: Always
         ports:
         - name: http
