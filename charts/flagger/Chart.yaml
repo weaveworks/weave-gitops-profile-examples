@@ -3,10 +3,13 @@ name: flagger
 icon: https://linkerd.io/images/logo-only-200h.png
 description: A Weaveworks Helm chart for the Flagger Profile
 type: application
-version: 0.0.3
+version: 0.0.4
 dependencies:
 - name: flagger
   version: "1.21.0"
+  repository: "https://flagger.app"
+- name: loadtester
+  version: "0.22.0"
   repository: "https://flagger.app"
 kubeVersion: ">=1.16.0-0"
 home: https://github.com/weaveworks/profiles-catalog
