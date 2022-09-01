@@ -77,10 +77,10 @@ elasticsearch:
       #!/usr/bin/env bash
       set -euo pipefail
       elasticsearch-certutil cert \
-        --name ${NODE_NAME} \
+        --name $${NODE_NAME} \
         --days 1000 \
-        --ip ${POD_IP} \
-        --dns ${NODE_NAME},${POD_SERVICE_NAME},${POD_SERVICE_NAME_HEADLESS},${NODE_NAME}.${POD_SERVICE_NAME},${NODE_NAME}.${POD_SERVICE_NAME_HEADLESS} \
+        --ip $${POD_IP} \
+        --dns $${NODE_NAME},$${POD_SERVICE_NAME},$${POD_SERVICE_NAME_HEADLESS},$${NODE_NAME}.$${POD_SERVICE_NAME},$${NODE_NAME}.$${POD_SERVICE_NAME_HEADLESS} \
         --ca-cert /usr/share/elasticsearch/config/certs/tls.crt \
         --ca-key /usr/share/elasticsearch/config/certs/tls.key  \
         --ca-pass "" \
