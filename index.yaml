@@ -375,6 +375,44 @@ entries:
     urls:
     - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/ingress-nginx-0.0.11/ingress-nginx-0.0.11.tgz
     version: 0.0.11
+  local-path-provisioner:
+  - annotations:
+      weave.works/category: Storage
+      weave.works/layer: layer-0
+      weave.works/links: |
+        - name: Chart Sources
+          url: https://github.com/weaveworks/profiles-catalog.git
+        - name: Upstream Project
+          url: https://github.com/rancher/local-path-provisioner.git
+      weave.works/profile: local-path-provisioner
+      weave.works/profile-ci: |
+        - "kind"
+    apiVersion: v2
+    appVersion: v0.0.22-dev
+    created: "2022-09-02T10:05:00.664918607Z"
+    dependencies:
+    - name: local-path-provisioner
+      repository: ""
+      version: v0.0.22-dev
+    description: Weaveworks profile for HostPath for persistent local storage with
+      Kubernetes based on Rancher
+    digest: 0525c75d973c4d9d8100a016487162655d6a6c1c97c017589d3e9c74d2fbd0ac
+    home: https://github.com/weaveworks/profiles-catalog
+    keywords:
+    - local-path-provisioner
+    - kind
+    - storage
+    - hostpath
+    kubeVersion: '>=1.12.0-r0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: local-path-provisioner
+    sources:
+    - https://github.com/rancher/local-path-provisioner.git
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/local-path-provisioner-0.0.3/local-path-provisioner-0.0.3.tgz
+    version: 0.0.3
   metallb:
   - annotations:
       weave.works/category: Loadbalancer
