@@ -53,6 +53,42 @@ entries:
         - "gke"
         - "kind"
     apiVersion: v2
+    created: "2022-10-06T10:06:40.00204348Z"
+    dependencies:
+    - condition: dex.enabled
+      name: dex
+      repository: https://charts.dexidp.io
+      version: 0.11.1
+    description: A Weaveworks Helm chart for OpenID Connect (OIDC)
+    digest: 5d1141e45d81faf8426f840714ab3e3ff53f4cde4b2edd33c9cc4e34e9d01bb5
+    home: https://github.com/weaveworks/profiles-catalog
+    icon: https://dexidp.io/img/logos/dex-horizontal-color.png
+    keywords:
+    - dex
+    - oidc
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: dex
+    sources:
+    - https://github.com/dexidp/helm-charts
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/dex-0.0.12/dex-0.0.12.tgz
+    version: 0.0.12
+  - annotations:
+      weave.works/links: |
+        - name: Chart Sources
+          url: https://github.com/dexidp/helm-charts
+        - name: Upstream Project
+          url: https://github.com/dexidp/dex
+      weave.works/operator: "true"
+      weave.works/profile: dex
+      weave.works/profile-ci: |
+        - "gke"
+        - "kind"
+    apiVersion: v2
     created: "2021-12-01T18:52:06.544473569Z"
     dependencies:
     - condition: dex.enabled
@@ -338,43 +374,6 @@ entries:
     - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/flagger-0.0.2/flagger-0.0.2.tgz
     version: 0.0.2
   ingress-nginx:
-  - annotations:
-      weave.works/category: Ingress
-      weave.works/layer: layer-1
-      weave.works/links: |
-        - name: Chart Sources
-          url:  https://kubernetes.github.io/ingress-nginx
-        - name: Upstream Project
-          url: https://github.com/kubernetes/ingress-nginx/tree/main/charts/ingress-nginx
-      weave.works/profile: ingress-nginx
-      weave.works/profile-ci: |
-        - "gke"
-    apiVersion: v2
-    created: "2022-10-06T10:06:08.484725644Z"
-    dependencies:
-    - name: ingress-nginx
-      repository: https://kubernetes.github.io/ingress-nginx
-      version: 4.2.5
-    description: A Weaveworks Helm chart for ingress-nginx
-    digest: 170d1e2abc41034b84de04050ad557d2762c03ce837d6a2c87adf9e2cc61a548
-    home: https://github.com/weaveworks/profiles-catalog
-    icon: https://raw.githubusercontent.com/prometheus/prometheus.github.io/master/assets/prometheus_logo-cb55bb5c346.png
-    keywords:
-    - network
-    - ingress
-    - nginx
-    - nginx-ingress
-    kubeVersion: '>=1.16.0-0'
-    maintainers:
-    - email: support@weave.works
-      name: Weaveworks
-    name: ingress-nginx
-    sources:
-    - https://kubernetes.github.io/ingress-nginx
-    type: application
-    urls:
-    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/ingress-nginx-0.0.12/ingress-nginx-0.0.12.tgz
-    version: 0.0.12
   - annotations:
       weave.works/category: Ingress
       weave.works/layer: layer-1
