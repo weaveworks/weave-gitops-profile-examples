@@ -1,82 +1,101 @@
-# Default values for ondat.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
+ondat:
+  ondat-operator:
+    # An exhaustive list of configurable options for ondat-operator
+    # can be found at https://github.com/ondat/charts/blob/main/charts/ondat-operator/values.yaml
+    cluster:
+      # Name of the deployment.
+      name: storageos
+ 
+      # Namespace to install the StorageOS cluster into.
+      # By default the release namespace will be used.
+      namespace:
 
-replicaCount: 1
+      # Enable protection for volumes during orchestrator upgrades - Tech Preview
+      nodeManagerFeatures:
+        upgradeGuard:
+          enabled: false
 
-image:
-  repository: nginx
-  pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+      # Default admin account.
+      admin:
+        # Username to authenticate to the StorageOS API with.
+        username: storageos
+        # Password to authenticate to the StorageOS API with. This must be at least
+        # 8 characters long.
+        password: storageos
 
-imagePullSecrets: []
-nameOverride: ""
-fullnameOverride: ""
+      # Resource requests and limits for the node container
+      resources: {}
+    #    requests:
+    #      cpu: 1
+    #      memory: 2Gi
+    #    limits:
+    #      cpu:
+    #      memory:
 
-serviceAccount:
-  # Specifies whether a service account should be created
-  create: true
-  # Annotations to add to the service account
-  annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
-  name: ""
+      # Node selector terms to install StorageOS on.
+      nodeSelectorTerm:
+        key:
+        value:
 
-podAnnotations: {}
+      # Pod toleration for the StorageOS pods.
+      toleration:
+        key:
+        value:
 
-podSecurityContext: {}
-  # fsGroup: 2000
+      # To disable anonymous usage reporting across the cluster, set to true.
+      # Defaults to false. To help improve the product, data such as API usage and
+      # StorageOS configuration information is collected.
+      disableTelemetry: false
 
-securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
+      # Connect to Ondat portal
+      portalManager:
+        secretRefName: storageos-portal-client
+        enabled: false
+        clientId:
+        secret:
+        apiUrl:
+        tenantId:
 
-service:
-  type: ClusterIP
-  port: 80
 
-ingress:
-  enabled: false
-  className: ""
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  hosts:
-    - host: chart-example.local
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
+      # The name of the StorageClass to be created
+      # Using a YAML anchor to allow deletion of the custom storageClass
+      storageClassName: storageos
 
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
+  etcd-cluster-operator:
+    # An exhaustive list of configurable options for etcd-cluster-operator
+    # can be found at https://github.com/ondat/charts/blob/main/charts/etcd-cluster-operator/values.yaml
+    cluster:
+      # Name of the etcd cluster
+      name: storageos-etcd
+      # Namespace to which to deploy the etcd cluster
+      # By default the release namespace will be used.
+      # If specifying this and also installing ondat, you will need to set the .cluster.kvBackend.namespace value for that chart
+      namespace:
+      # Number of replicas for etcd, suggest 5
+      replicas: 5
+      # Storageclass for etcd backing storage
+      # NOTE: We CANNOT use storageos here as this is the egg to Ondat's chicken
+      storageclass:
+      # Amount of storage to allocate per etcd volume
+      storage: 12Gi
+      # Resource requests and limits for etcd pods
+      resources:
+        requests:
+          cpu: 500m
+          memory: 500Mi
+        limits:
+          cpu: 500m
+          memory: 500Mi
+      # Node selector terms to install etcd on
+      nodeSelectorTerm:
+        key:
+        value:
+      # Pod toleration for etcd pods
+      toleration:
+        key:
+        value:
 
-autoscaling:
-  enabled: false
-  minReplicas: 1
-  maxReplicas: 100
-  targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
-
-nodeSelector: {}
-
-tolerations: []
-
-affinity: {}
+    ondat:
+      # Namespace in which ondat operator is installed
+      # By default the release namespace will be used.
+      namespace:
