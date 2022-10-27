@@ -1,0 +1,33 @@
+apiVersion: v2
+description: Weaveworks profile for deploying Ondat kubernetes storage with in-cluster etcd
+name: ondat
+version: 0.0.1
+appVersion: "v2.9.0"
+home: https://github.com/weaveworks/profiles-catalog
+icon: https://docs.ondat.io/images/generic/Ondat_logo.svg
+sources:
+  - https://github.com/ondat
+dependencies:
+  - name: ondat
+    version: "0.2.6"
+    repository: https://ondat.github.io/charts
+keywords:
+- ondat
+- data
+- operator
+- etcd
+- storage
+maintainers:
+  - name: Weaveworks
+    email: support@weave.works
+annotations:
+  "weave.works/profile": ondat
+  "weave.works/category": Storage
+  "weave.works/layer": layer-1
+  "weave.works/links": |
+    - name: Chart Sources
+      url: https://github.com/weaveworks/profiles-catalog.git
+    - name: Upstream Project
+      url: 
+  "weave.works/profile-ci": |
+    - "kind"
