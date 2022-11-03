@@ -603,6 +603,42 @@ entries:
     urls:
     - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/metallb-0.0.1/metallb-0.0.1.tgz
     version: 0.0.1
+  ondat:
+  - annotations:
+      weave.works/category: Storage
+      weave.works/layer: layer-1
+      weave.works/links: "- name: Chart Sources\n  url: https://github.com/weaveworks/profiles-catalog.git\n-
+        name: Upstream Project\n  url: \n"
+      weave.works/profile: ondat
+      weave.works/profile-ci: |
+        - "kind"
+    apiVersion: v2
+    appVersion: v2.9.0
+    created: "2022-11-03T10:21:10.046647005Z"
+    dependencies:
+    - name: ondat
+      repository: https://ondat.github.io/charts
+      version: 0.2.6
+    description: Weaveworks profile for deploying Ondat kubernetes storage with in-cluster
+      etcd
+    digest: af6d0be523bc7a8f8ae2e5eb96150ab3878c72d992362dab1cbce5a3df2a1382
+    home: https://github.com/weaveworks/profiles-catalog
+    icon: https://docs.ondat.io/images/generic/Ondat_logo.svg
+    keywords:
+    - ondat
+    - data
+    - operator
+    - etcd
+    - storage
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: ondat
+    sources:
+    - https://github.com/ondat
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/ondat-0.0.1/ondat-0.0.1.tgz
+    version: 0.0.1
   prometheus:
   - annotations:
       weave.works/category: Observability
