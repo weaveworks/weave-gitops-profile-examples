@@ -1,7 +1,7 @@
 apiVersion: v2
 description: Weaveworks profile for deploying Ondat kubernetes storage with in-cluster etcd
 name: ondat
-version: 0.0.1
+version: 0.0.2
 appVersion: "v2.9.0"
 home: https://github.com/weaveworks/profiles-catalog
 icon: https://docs.ondat.io/images/generic/Ondat_logo.svg
