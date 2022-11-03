@@ -1,0 +1,6 @@
+dependencies:
+- name: ondat
+  repository: https://ondat.github.io/charts
+  version: 0.2.6
+digest: sha256:23f66189e8fab92e4e827292760e67205a298c730a29490b029da8ca1b5dc06b
+generated: "2022-10-27T16:14:30.872015815+01:00"
