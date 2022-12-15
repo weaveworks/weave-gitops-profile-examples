@@ -294,6 +294,41 @@ entries:
     urls:
     - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/elk-stack-0.0.7/elk-stack-0.0.7.tgz
     version: 0.0.7
+  external-secrets:
+  - annotations:
+      weave.works/category: Secrets Management
+      weave.works/layer: layer-0
+      weave.works/links: |
+        - name: Chart Sources
+          url: https://charts.external-secrets.io
+        - name: Upstream Project
+          url: https://github.com/external-secrets/external-secrets
+      weave.works/operator: "true"
+      weave.works/profile: external-secrets
+    apiVersion: v2
+    created: "2022-12-15T15:00:31.057592131Z"
+    dependencies:
+    - name: external-secrets
+      repository: https://charts.external-secrets.io
+      version: 0.6.1
+    description: A Weaveworks Helm chart for the External Secrets Operator
+    digest: 7c7e4939c3cb16bf3e98966ae9d424cfa0e7203f00d45af3c1d6d25f5c3c8972
+    home: https://github.com/weaveworks/profiles-catalog
+    icon: https://raw.githubusercontent.com/external-secrets/external-secrets/main/assets/eso-round-logo.svg
+    keywords:
+    - external-secrets
+    - secrets-manager
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: external-secrets
+    sources:
+    - https://charts.external-secrets.io
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/external-secrets-0.6.1/external-secrets-0.6.1.tgz
+    version: 0.6.1
   flagger:
   - annotations:
       weave.works/category: Deployment
