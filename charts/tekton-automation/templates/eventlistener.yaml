@@ -1,0 +1,17 @@
+# CONFIRMED: EventListener received Flux Alert via Provider.
+# CONFIRMED: serviceAccountName exists in rbac.yaml
+# CONFIRMED: trigger binding and template exist with proper names
+---
+apiVersion: triggers.tekton.dev/v1beta1
+kind: EventListener
+metadata:
+  name: flux-tekton-eventlistener
+  namespace: tekton-pipelines
+spec:
+  serviceAccountName: tekton-triggers-sa
+  triggers:
+    - name: flux-tekton-triggerbinding
+      bindings:
+        - ref: flux-tekton-triggerbinding
+      template:
+        ref: flux-tekton-triggertemplate
