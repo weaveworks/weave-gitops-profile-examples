@@ -951,6 +951,75 @@ entries:
     urls:
     - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/prometheus-0.0.7/prometheus-0.0.7.tgz
     version: 0.0.7
+  tekton-automation:
+  - annotations:
+      weave.works/category: CICD
+      weave.works/links: |
+        - name: Chart Sources
+          url: https://weave.works
+        - name: Upstream Project
+          url: https://github.com/tektoncd/
+      weave.works/operator: "true"
+      weave.works/profile: tekton-automation
+      weave.works/profile-ci: |
+        - "gke"
+        - "kind"
+        - "eks"
+    apiVersion: v2
+    created: "2022-12-28T18:15:43.715252888Z"
+    description: A Weaveworks Helm chart for a Cloudnative Buildpacks and Tekton Automation
+      Framework
+    digest: 853f026658d9c8b6ab0a75bcc60d6265492f8f40f477efda82000a475ded23b2
+    home: https://github.com/murillodigital/gitops-profiles
+    keywords:
+    - tekton
+    - tekton-pipelines
+    - cicd
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: tekton-automation
+    sources:
+    - https://weave.works
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/tekton-automation-0.0.7/tekton-automation-0.0.7.tgz
+    version: 0.0.7
+  tekton-stack:
+  - annotations:
+      weave.works/category: CICD
+      weave.works/links: |
+        - name: Chart Sources
+          url: https://tekton.io
+        - name: Upstream Project
+          url: https://github.com/tektoncd/
+      weave.works/operator: "true"
+      weave.works/profile: tekton-stack
+      weave.works/profile-ci: |
+        - "gke"
+        - "kind"
+        - "eks"
+    apiVersion: v2
+    created: "2022-12-28T18:15:43.921936741Z"
+    description: A Weaveworks Helm chart for the Full Tekton Stack
+    digest: 8325beb4aaa068a9e0298f3a512a854fe5809bec2f7cf674e8cf7b8be86acb8a
+    home: https://github.com/murillodigital/gitops-profiles
+    keywords:
+    - tekton
+    - tekton-pipelines
+    - cicd
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: tekton-stack
+    sources:
+    - https://tektonio
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/tekton-stack-0.0.2/tekton-stack-0.0.2.tgz
+    version: 0.0.2
   universal-crossplane:
   - apiVersion: v1
     appVersion: 1.10.1-up.1
