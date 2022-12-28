@@ -1,0 +1,27 @@
+apiVersion: v2
+name: ultrasecure-accesscontrol-policies
+description: A Wewave Policy chart for Ultra Secure Access Control Policies
+type: application
+home: https://github.com/weavegitops/catalog
+version: 0.0.2
+kubeVersion: ">=1.16.0-0"
+sources:
+  - "https://weavegitops.github.io/catalog"
+  
+keywords:
+- rbac
+- security
+- policies
+
+maintainers:
+  - name: Weaveworks
+    email: support@weave.works
+appVersion: "1.0.0"
+annotations:
+  "weave.works/profile": ultrasecure-accesscontrol-policies
+  "weave.works/category": Policies
+
+
+
+
+
