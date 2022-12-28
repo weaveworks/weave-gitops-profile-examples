@@ -1,5 +1,9 @@
 kube-prometheus-stack:
   enabled: true
+  prometheus:
+    prometheusSpec:
+      podMonitorSelector: {}
+      podMonitorSelectorNilUsesHelmValues: false
   grafana:
     ingress:
       path: /grafana/?(.*)

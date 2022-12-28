@@ -1,0 +1,45 @@
+{{- if .Values.policySource.enabled }}
+{{- if not .Values.policySource.sourceRef }}
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: GitRepository
+metadata:
+  name: policy-library
+  namespace: {{ .Release.Namespace }}
+spec:
+  interval: 10s
+  url: {{ .Values.policySource.url }}
+  {{- if or .Values.policySource.tag .Values.policySource.branch }}
+  ref:
+    {{- if .Values.policySource.tag }}
+    tag: {{ .Values.policySource.tag }}
+    {{- end }}
+    {{- if .Values.policySource.branch }}
+    branch: {{ .Values.policySource.branch }}
+    {{- end }}
+  {{- end }}
+  {{- if .Values.policySource.secretRef }}
+  secretRef:
+    name: {{ .Values.policySource.secretRef }}
+  {{- end }}
+{{- end }}
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: policy-library
+  namespace: {{ .Release.Namespace }}
+spec:
+  interval: 10m0s
+  {{- if not .Values.policySource.sourceRef }}
+  sourceRef:
+    kind: GitRepository
+    name: policy-library
+    namespace: {{ .Release.Namespace }}
+  {{- else }}
+  sourceRef:
+{{- toYaml .Values.policySource.sourceRef | nindent 4 }}
+  {{- end }}
+  path: {{ .Values.policySource.path }}
+  prune: true
+  validation: client
+{{- end }}

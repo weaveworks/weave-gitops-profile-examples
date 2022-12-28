@@ -1,0 +1,19 @@
+ondat:
+  ondat-operator:
+    cluster:
+      portalManager:
+        secretRefName: storageos-portal-client
+        enabled: true
+        clientId: clientID
+        secret: secret
+        apiUrl: https://portal-setup-7dy4neexbq-ew.a.run.app/
+        tenantId: tenantID
+  etcd-cluster-operator:
+    cluster:
+      replicas: 3
+      storageclass: local-path
+      storage: 6Gi
+      resources:
+        requests:
+          cpu: 100m
+          memory: 300Mi
