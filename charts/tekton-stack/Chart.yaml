@@ -1,0 +1,32 @@
+apiVersion: v2
+name: tekton-stack
+description: A Weaveworks Helm chart for the Full Tekton Stack
+type: application
+version: 0.0.2
+kubeVersion: ">=1.16.0-0"
+home: https://github.com/murillodigital/gitops-profiles
+sources:
+  - https://tektonio
+
+keywords:
+- tekton
+- tekton-pipelines
+- cicd
+
+maintainers:
+  - name: Weaveworks
+    email: support@weave.works
+
+annotations:
+  "weave.works/profile": tekton-stack
+  "weave.works/category": CICD
+  "weave.works/operator": "true"
+  "weave.works/links": |
+    - name: Chart Sources
+      url: https://tekton.io
+    - name: Upstream Project
+      url: https://github.com/tektoncd/
+  "weave.works/profile-ci": |
+    - "gke"
+    - "kind"
+    - "eks"

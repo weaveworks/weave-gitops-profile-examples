@@ -1,0 +1,4 @@
+defaultPath: "/apps/java-maven"
+dockerHubUsername: ""
+registry: https://index.docker.io/v1/
+accessToken: ""
