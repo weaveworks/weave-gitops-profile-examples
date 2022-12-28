@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "policy-agent.name" -}}
+{{- define "ingress-nginx.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "policy-agent.fullname" -}}
+{{- define "ingress-nginx.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,36 +26,36 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "policy-agent.chart" -}}
+{{- define "ingress-nginx.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "policy-agent.labels" -}}
-helm.sh/chart: {{ include "policy-agent.chart" . }}
-{{ include "policy-agent.selectorLabels" . }}
-app.kubernetes.io/part-of: {{ include "policy-agent.chart" . }}
-app.kubernetes.io/version: "1"
-app.kubernetes.io/tier: "backend"
+{{- define "ingress-nginx.labels" -}}
+helm.sh/chart: {{ include "ingress-nginx.chart" . }}
+{{ include "ingress-nginx.selectorLabels" . }}
+{{- if .Chart.AppVersion }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{- end }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
 
 {{/*
 Selector labels
 */}}
-{{- define "policy-agent.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "policy-agent.name" . }}
+{{- define "ingress-nginx.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "ingress-nginx.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "policy-agent.serviceAccountName" -}}
+{{- define "ingress-nginx.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "policy-agent.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "ingress-nginx.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}

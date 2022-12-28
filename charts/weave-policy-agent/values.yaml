@@ -1,29 +1,44 @@
 
-image: magalixcorp/policy-agent:latest
-namespace: policy-system 
-failurePolicy: Ignore
+policy-agent:
+  failurePolicy: Ignore
 
-# If you don't want to use cert-manager, set useCertManager to false and provide your own certs
-useCertManager: true
-certificate: ""
-key: ""
-caCertificate: ""
+  # If you don't want to use cert-manager, set useCertManager to false and provide your own certs
+  useCertManager: true
+  certificate: ""
+  key: ""
+  caCertificate: ""
 
-persistence:
+  persistence:
+    enabled: false
+    # claimStorage: 1Gi
+    # sinkDir: /tmp
+    # storageClassName: standard
+
+  config:
+    accountId: ""
+    clusterId: ""
+
+    audit:
+      # Disable audit functionality
+      enabled: false
+
+    admission:
+      # Enable admission functionality
+      enabled: true
+      # mutate: true # enable mutating violating resources
+      sinks:
+        # Enable writing violations as K8s events
+        k8sEventsSink:
+          enabled: true
+
+policySource:
   enabled: false
-  # claimStorage: 1Gi
-  # sinkDir: /tmp
-  # storageClassName: standard
-
-config:
-  AGENT_FILESYSTEM_SINK_FILE_PATH: "/tmp/result.json"
-  # Enable writing violations as K8s events
-  AGENT_ENABLE_K8S_EVENTS_SINK: "true"
-  # Enable pushing violations to flux notification controller
-  # AGENT_FLUX_NOTIFICATION_SINK_ADDR: <flux-notification-controller-svc>
-  # enbales admission functionality
-  AGENT_ENABLE_ADMISSION: "1"
-  AGENT_ENABLE_AUDIT: "1"
-
-accountId: ""
-clusterId: ""
+  # url: ssh://git@github.com/weaveworks/policy-library
+  # tag: v1.0.0
+  # branch:
+  # path: ./  # Could be a path to the policies dir or a kustomization.yaml file
+  # secretRef: policy-library-auth  # (Optional): Name of the K8s secret with private repo auth credentials
+  # sourceRef: # Could specify a name for an existing GitSource reference instead of creating a new one
+  #   kind: GitRepository
+  #   name: policy-library
+  #   namespace: flux-system

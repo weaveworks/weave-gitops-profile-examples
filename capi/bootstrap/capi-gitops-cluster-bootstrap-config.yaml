@@ -2,7 +2,7 @@ apiVersion: capi.weave.works/v1alpha1
 kind: ClusterBootstrapConfig
 metadata:
   name: capi-gitops
-  namespace: default
+  namespace: default 
 spec:
   clusterSelector:
     matchLabels:
@@ -11,8 +11,9 @@ spec:
     generateName: "run-gitops-{{ .ObjectMeta.Name }}"
     spec:
       containers:
-        - image: docker.io/foot/scratch-public:wego-app-0.5.0-rc2
-          name: gitops-install
+        - image: ghcr.io/fluxcd/flux-cli:v0.29.5
+          imagePullPolicy: Always
+          name: flux-bootstrap
           resources: {}
           volumeMounts:
             - name: kubeconfig
@@ -20,26 +21,16 @@ spec:
               readOnly: true
           args:
             [
-              "install",
-              "--override-in-cluster",
-              "--app-config-url",
-              "$(GITOPS_REPO)",
+              "bootstrap",
+              "github",
+              "--kubeconfig=/etc/gitops/value",
+              "--owner=weavegitops",
+              "--repository=demo3-repo",
+              "--path=./clusters/{{ .ObjectMeta.Name }}",
             ]
-          env:
-            - name: KUBECONFIG
-              value: "/etc/gitops/value"
-            - name: GITOPS_REPO
-              value: "ssh://git@github.com/weavegitops/demo-repo.git"
-            - name: GITHUB_TOKEN
-              valueFrom:
-                secretKeyRef:
-                  name: my-pat
-                  key: GITHUB_TOKEN
-          # - name: GITLAB_TOKEN # If your GitOps reop is on GitLab, use this instead of GITHUB_TOKEN
-          #   valueFrom:
-          #     secretKeyRef:
-          #       name: pat
-          #       key: GITLAB_TOKEN
+          envFrom:
+            - secretRef:
+                name: my-pat
       restartPolicy: Never
       volumes:
         - name: kubeconfig
