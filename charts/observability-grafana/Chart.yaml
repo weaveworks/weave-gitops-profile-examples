@@ -1,0 +1,38 @@
+apiVersion: v2
+name: observability-grafana
+description: A Weaveworks Helm chart for the grafana Profile using the Bitnami Helm Repo
+type: application
+version: 0.0.1
+dependencies:
+  - name: grafana
+    version: "8.2.11"
+    repository: "https://charts.bitnami.com/bitnami"
+kubeVersion: ">=1.16.0-0"
+home: https://github.com/weaveworks/profiles-catalog
+sources:
+  - https://charts.bitnami.com/bitnami
+
+keywords:
+- analytics
+- monitoring
+- metrics
+- logs
+
+
+maintainers:
+  - name: Weaveworks
+    email: support@weave.works
+
+annotations:
+  "weave.works/profile": observability-grafana
+  "weave.works/category": Observability
+  "weave.works/operator": "true"
+  "weave.works/links": |
+    - name: Chart Sources
+      url: https://charts.bitnami.com/bitnami
+    - name: Upstream Project
+      url: https://github.com/bitnami/containers/tree/main/bitnami/grafana
+  "weave.works/profile-ci": |
+    - "gke"
+    - "kind"
+    - "eks"

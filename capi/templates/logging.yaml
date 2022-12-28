@@ -1,0 +1,170 @@
+apiVersion: capi.weave.works/v1alpha1
+kind: CAPITemplate
+metadata:
+  name: logging-template
+  namespace: default
+  annotations:
+    templates.weave.works/profiles-enabled: 'true'
+    templates.weave.works/kustomizations-enabled: 'true'
+    templates.weave.works/credentials-enabled: 'true'
+    capi.weave.works/profile-0: '{"name": "cert-manager","version": "0.0.10","namespace": "cert-system"}'
+    capi.weave.works/profile-1: '{"name": "weave-policy-agent", "editable": true, "version": "0.6.3", "namespace": "policy-system", "values": "policy-agent:\n  config:\n    AGENT_ENABLE_ADMISSION: \"1\"\n    accountId: tony\n    clusterId: ${CLUSTER_NAME}" }'
+    capi.weave.works/profile-2: '{"name": "fluentd-policies", "version": "0.0.3"}'
+    capi.weave.works/profile-3: '{"name": "elasticsearch-policies", "version": "0.0.3"}'
+    capi.weave.works/profile-4: '{"name": "kibana-policies", "version": "0.0.2"}'
+    capi.weave.works/profile-5: '{"name": "fluentd-configmap", "editable": true, "version": "0.0.4",  "namespace": "logging"}'
+    #capi.weave.works/profile-6: '{"name": "elasticsearch-configmap", "editable": true, "version": "0.0.3",  "namespace": "logging"}'
+    capi.weave.works/profile-7: '{"name": "elasticsearch", "editable": true, "version": "0.0.3", "namespace": "logging", "values": "elasticsearch:\n  global:\n    kibanaEnabled: false\n  master:\n    masterOnly: false\n    persistence:\n      enabled: false\n    replicaCount: 1\n  data:\n    persistence:\n      enabled: false\n    replicaCount: 1\n  ingest:\n    enabled: false\n    replicaCount: 1\n  coordinating:\n    replicaCount: 1\n    extraEnvVars:\n      - name: ELASTICSEARCH_NODE_ROLES\n        value: \"ml,remote_cluster_client\""}'
+    capi.weave.works/profile-8: '{"name": "fluentd", "editable": true, "version": "0.0.4", "namespace": "logging", "values": "fluentd:\n  forwarder:\n    configMapFiles:\n      fluentd-inputs.conf: |\n        <source>\n          @type tail\n          path /var/log/containers/*.log\n          exclude_path /var/log/containers/*fluentd*.log\n          pos_file /opt/bitnami/fluentd/logs/buggers/fluentd-docker.pos\n          tag kubernetes.*\n          read_from_head true\n          <parse>\n            @type none\n            time_key time\n            time_format %Y-%m-%dT%H:%M:%S.%NZ\n          </parse>\n        </source>\n        <filter kubernetes.**>\n          @type kubernetes_metadata\n        </filter>\n  aggregator:\n    configMap: elasticsearch-output\n    extraEnvVars:\n      - name: ELASTICSEARCH_HOST\n        value: logging-elasticsearch\n      - name: ELASTICSEARCH_PORT\n        value: \"9200\""}'
+    capi.weave.works/profile-9: '{"name": "kibana", "editable": true, "version": "0.0.3", "namespace": "logging", "values": "kibana:\n  persistence:\n    enabled: false\n  elasticsearch:\n    hosts: [ \"logging-elasticsearch\" ]\n    port: 9200"}'
+spec:
+  description: A simple CAPD template that will install logging tools with your leaf cluster
+  params:
+    - name: CLUSTER_NAME
+      required: true
+      description: This is used for the cluster naming.
+    - name: NAMESPACE
+      description: Namespace to create the cluster in
+    - name: KUBERNETES_VERSION
+      description: Kubernetes version to use for the cluster
+      options: ["1.19.11", "1.21.1", "1.22.0", "1.23.3"]
+    - name: CONTROL_PLANE_MACHINE_COUNT
+      description: Number of control planes
+      options: ["1", "2", "3"]
+    - name: WORKER_MACHINE_COUNT
+      description: Number of control planes
+  resourcetemplates:
+    - apiVersion: gitops.weave.works/v1alpha1
+      kind: GitopsCluster
+      metadata:
+        name: "${CLUSTER_NAME}"
+        namespace: "${NAMESPACE}"
+        labels:
+          weave.works/capi: bootstrap
+      spec:
+        capiClusterRef:
+          name: "${CLUSTER_NAME}"
+    - apiVersion: cluster.x-k8s.io/v1beta1
+      kind: Cluster
+      metadata:
+        name: "${CLUSTER_NAME}"
+        namespace: "${NAMESPACE}"
+        labels:
+          cni: calico
+      spec:
+        clusterNetwork:
+          pods:
+            cidrBlocks:
+              - 192.168.0.0/16
+          serviceDomain: cluster.local
+          services:
+            cidrBlocks:
+              - 10.128.0.0/12
+        controlPlaneRef:
+          apiVersion: controlplane.cluster.x-k8s.io/v1beta1
+          kind: KubeadmControlPlane
+          name: "${CLUSTER_NAME}-control-plane"
+          namespace: "${NAMESPACE}"
+        infrastructureRef:
+          apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+          kind: DockerCluster
+          name: "${CLUSTER_NAME}"
+          namespace: "${NAMESPACE}"
+    - apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+      kind: DockerCluster
+      metadata:
+        name: "${CLUSTER_NAME}"
+        namespace: "${NAMESPACE}"
+    - apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+      kind: DockerMachineTemplate
+      metadata:
+        name: "${CLUSTER_NAME}-control-plane"
+        namespace: "${NAMESPACE}"
+      spec:
+        template:
+          spec:
+            extraMounts:
+              - containerPath: /var/run/docker.sock
+                hostPath: /var/run/docker.sock
+    - apiVersion: controlplane.cluster.x-k8s.io/v1beta1
+      kind: KubeadmControlPlane
+      metadata:
+        name: "${CLUSTER_NAME}-control-plane"
+        namespace: "${NAMESPACE}"
+      spec:
+        kubeadmConfigSpec:
+          clusterConfiguration:
+            apiServer:
+              certSANs:
+                - localhost
+                - 127.0.0.1
+                - 0.0.0.0
+            controllerManager:
+              extraArgs:
+                enable-hostpath-provisioner: "true"
+          initConfiguration:
+            nodeRegistration:
+              criSocket: /var/run/containerd/containerd.sock
+              kubeletExtraArgs:
+                cgroup-driver: cgroupfs
+                eviction-hard: nodefs.available<0%,nodefs.inodesFree<0%,imagefs.available<0%
+          joinConfiguration:
+            nodeRegistration:
+              criSocket: /var/run/containerd/containerd.sock
+              kubeletExtraArgs:
+                cgroup-driver: cgroupfs
+                eviction-hard: nodefs.available<0%,nodefs.inodesFree<0%,imagefs.available<0%
+        machineTemplate:
+          infrastructureRef:
+            apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+            kind: DockerMachineTemplate
+            name: "${CLUSTER_NAME}-control-plane"
+            namespace: "${NAMESPACE}"
+        replicas: "${CONTROL_PLANE_MACHINE_COUNT}"
+        version: "${KUBERNETES_VERSION}"
+    - apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+      kind: DockerMachineTemplate
+      metadata:
+        name: "${CLUSTER_NAME}-md-0"
+        namespace: "${NAMESPACE}"
+      spec:
+        template:
+          spec: {}
+    - apiVersion: bootstrap.cluster.x-k8s.io/v1beta1
+      kind: KubeadmConfigTemplate
+      metadata:
+        name: "${CLUSTER_NAME}-md-0"
+        namespace: "${NAMESPACE}"
+      spec:
+        template:
+          spec:
+            joinConfiguration:
+              nodeRegistration:
+                kubeletExtraArgs:
+                  cgroup-driver: cgroupfs
+                  eviction-hard: nodefs.available<0%,nodefs.inodesFree<0%,imagefs.available<0%
+    - apiVersion: cluster.x-k8s.io/v1beta1
+      kind: MachineDeployment
+      metadata:
+        name: "${CLUSTER_NAME}-md-0"
+        namespace: "${NAMESPACE}"
+      spec:
+        clusterName: "${CLUSTER_NAME}"
+        replicas: "${WORKER_MACHINE_COUNT}"
+        selector:
+          matchLabels: null
+        template:
+          spec:
+            bootstrap:
+              configRef:
+                apiVersion: bootstrap.cluster.x-k8s.io/v1beta1
+                kind: KubeadmConfigTemplate
+                name: "${CLUSTER_NAME}-md-0"
+                namespace: "${NAMESPACE}"
+            clusterName: "${CLUSTER_NAME}"
+            infrastructureRef:
+              apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+              kind: DockerMachineTemplate
+              name: "${CLUSTER_NAME}-md-0"
+              namespace: "${NAMESPACE}"
+            version: "${KUBERNETES_VERSION}"
