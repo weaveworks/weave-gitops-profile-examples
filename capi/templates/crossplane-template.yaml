@@ -9,7 +9,7 @@ metadata:
     templates.weave.works/credentials-enabled: 'true'
     capi.weave.works/profile-0: '{"name": "cert-manager","version": "0.0.9","namespace": "cert-system"}'
     capi.weave.works/profile-1: '{"name": "weave-policy-agent", "editable": true, "version": "0.5.4", "namespace": "policy-system", "values": "policy-agent:\n  config:\n    AGENT_ENABLE_ADMISSION: \"1\"\n    accountId: tony\n    clusterId: ${CLUSTER_NAME}" }'
-    capi.weave.works/profile-2: '{"name": "crossplane-policies", "version": "0.0.1"}'
+    capi.weave.works/profile-2: '{"name": "universal-crossplane-policies", "version": "0.0.1"}'
     capi.weave.works/profile-3: '{"name": "universal-crossplane", "version": "0.0.1", "namespace": "crossplane"}'
 spec:
   description: A simple CAPD template that will install logging tools with your leaf cluster
