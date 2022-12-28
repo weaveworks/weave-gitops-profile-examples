@@ -1,0 +1,76 @@
+apiVersion: pac.weave.works/v2beta1
+kind: Policy
+metadata:
+  name: weave.policies.logging.kibana.image-name
+spec:
+  id: weave.policies.logging.kibana.image_name
+  name: kibana Best Practices - Image Name
+  enabled: true
+  description: |
+    This Policy ensures the kibana profile is using the correct image name. 
+  how_to_solve: |
+    If you encounter a violation, ensure the image name specified matches the official image. 
+  category: weave.categories.organizational-standards
+  severity: high
+  targets: {kinds: [Deployment]}
+  parameters:
+    - name: exclude_namespaces
+      type: array
+      required: false
+      value:
+    - name: exclude_label_key
+      type: string
+      required: false
+      value:
+    - name: exclude_label_value
+      type: string
+      required: false
+      value:
+    - name: image_name
+      type: string
+      required: true
+      value: "docker.io/bitnami/kibana:8"
+  code: |
+    package weave.policies.logging.kibana.image_name
+
+    import future.keywords.in   
+    image_name := input.parameters.image_name
+    exclude_namespaces := input.parameters.exclude_namespaces
+    exclude_label_key := input.parameters.exclude_label_key
+    exclude_label_value := input.parameters.exclude_label_value
+
+    violation[result] {
+      isExcludedNamespace == false
+      not exclude_label_value == controller_input.metadata.labels[exclude_label_key]
+      some i
+      containers := controller_spec.containers[i]
+      contains(containers.name, "kibana")
+      not contains(containers.image, image_name)
+      result = {
+        "issue detected": true,
+        "msg": sprintf("Expected %v, found %v",[image_name, containers.image]),
+        "violating_key": sprintf("spec.template.spec.containers[%v]", [i])
+      }
+    }
+
+    array_contains(array, element) {
+      array[_].name = element
+    }
+
+    # Controller input
+    controller_input = input.review.object
+
+    # controller_container acts as an iterator to get containers from the template
+    controller_spec = controller_input.spec.template.spec {
+      contains_kind(controller_input.kind, {"Deployment"})
+    }
+
+    contains_kind(kind, kinds) {
+      kinds[_] = kind
+    }
+
+    isExcludedNamespace = true {
+    	controller_input.metadata.namespace
+    	controller_input.metadata.namespace in exclude_namespaces
+    } else = false
+

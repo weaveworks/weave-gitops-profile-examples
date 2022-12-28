@@ -1,0 +1,39 @@
+apiVersion: v2
+name: logging-kibana
+description: A Weaveworks Helm chart for the kibana Profile
+type: application
+version: 0.0.1
+dependencies:
+  - name: kibana
+    version: "10.2.6"
+    repository: "https://charts.bitnami.com/bitnami"
+kubeVersion: ">=1.16.0-0"
+home: https://github.com/weavegitops/catalog
+sources:
+  - https://charts.bitnami.com/bitnami
+
+keywords:
+- kibana
+- analytics
+- monitoring
+- metrics
+- logs
+
+
+maintainers:
+  - name: Weaveworks
+    email: support@weave.works
+
+annotations:
+  "weave.works/profile": logging-kibana
+  "weave.works/category": Logging
+  "weave.works/operator": "true"
+  "weave.works/links": |
+    - name: Chart Sources
+      url: https://charts.bitnami.com/bitnami
+    - name: Upstream Project
+      url: https://github.com/bitnami/containers/tree/main/bitnami/kibana
+  "weave.works/profile-ci": |
+    - "gke"
+    - "kind"
+    - "eks"
