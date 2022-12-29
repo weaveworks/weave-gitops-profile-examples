@@ -1,0 +1,22 @@
+apiVersion: v2
+name: logging-kibana-policies
+description: A Weaveworks Helm chart of Policies for the kibana Profile
+type: application
+version: 0.0.1
+kubeVersion: ">=1.16.0-0"
+home: https://github.com/weavegitops/catalog
+sources:
+  - "https://weavegitops.github.io/catalog"
+
+keywords:
+- kibana
+- policies
+
+
+maintainers:
+  - name: Weaveworks
+    email: support@weave.works
+
+annotations:
+  "weave.works/profile": logging-kibana-policies
+  "weave.works/category": Logging

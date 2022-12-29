@@ -1,0 +1,39 @@
+apiVersion: v2
+name: logging-fluentd
+description: A Weaveworks Helm chart for the fluentd Profile
+type: application
+version: 0.0.1
+dependencies:
+  - name: fluentd
+    version: "5.5.11"
+    repository: "https://charts.bitnami.com/bitnami"
+kubeVersion: ">=1.16.0-0"
+home: https://github.com/weavegitops/catalog
+sources:
+  - https://charts.bitnami.com/bitnami
+
+keywords:
+- fluentd
+- logging
+- logs
+- data
+- collector
+
+
+maintainers:
+  - name: Weaveworks
+    email: support@weave.works
+
+annotations:
+  "weave.works/profile": logging-fluentd
+  "weave.works/category": Logging
+  "weave.works/operator": "true"
+  "weave.works/links": |
+    - name: Chart Sources
+      url: https://charts.bitnami.com/bitnami
+    - name: Upstream Project
+      url: https://github.com/bitnami/containers/tree/main/bitnami/fluentd
+  "weave.works/profile-ci": |
+    - "gke"
+    - "kind"
+    - "eks"
