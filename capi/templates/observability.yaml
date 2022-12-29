@@ -13,7 +13,7 @@ metadata:
     capi.weave.works/profile-3: '{"name": "observability-kube-prometheus", "version": "0.0.1", "namespace": "prometheus" }'
     capi.weave.works/profile-4: '{"name": "observability-grafana", "version": "0.0.1", "namespace": "grafana", "values": "grafana:\n  metrics:\n    serviceMonitor:\n      namespace: prometheus\n  persistence:\n    enabled: false" }'
 spec:
-  description: REPLACE HOST IPS (W.X.Y.Z) -Equinix Bare Metal based virtual K8s cluster service, Prometheus profile set.
+  description: REPLACE HOST IPS (W.X.Y.Z) -Equinix Bare Metal based virtual K8s cluster service.
   params:
     - name: CLUSTER_NAME
       description: The name for this cluster.
