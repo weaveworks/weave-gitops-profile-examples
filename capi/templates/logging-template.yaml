@@ -17,7 +17,7 @@ metadata:
     capi.weave.works/profile-7: '{"name": "logging-fluentd", "editable": true, "version": "0.0.1", "namespace": "logging", "values": "fluentd:\n  forwarder:\n    configMapFiles:\n      fluentd-inputs.conf: |\n        <source>\n          @type tail\n          path /var/log/containers/*.log\n          exclude_path /var/log/containers/*fluentd*.log\n          pos_file /opt/bitnami/fluentd/logs/buggers/fluentd-docker.pos\n          tag kubernetes.*\n          read_from_head true\n          <parse>\n            @type none\n            time_key time\n            time_format %Y-%m-%dT%H:%M:%S.%NZ\n          </parse>\n        </source>\n        <filter kubernetes.**>\n          @type kubernetes_metadata\n        </filter>\n  aggregator:\n    configMap: elasticsearch-output\n    extraEnvVars:\n      - name: ELASTICSEARCH_HOST\n        value: logging-elasticsearch\n      - name: ELASTICSEARCH_PORT\n        value: \"9200\""}'
     capi.weave.works/profile-8: '{"name": "logging-kibana", "editable": true, "version": "0.0.3", "namespace": "logging", "values": "kibana:\n  persistence:\n    enabled: false\n  elasticsearch:\n    hosts: [ \"logging-elasticsearch\" ]\n    port: 9200"}'
 spec:
-  description: REPLACE HOST IPS (W.X.Y.Z) -Equinix Bare Metal based virtual K8s cluster service, Prometheus profile set.
+  description: REPLACE HOST IPS (W.X.Y.Z) -Equinix Bare Metal based virtual K8s cluster service.
   params:
     - name: CLUSTER_NAME
       description: The name for this cluster.
