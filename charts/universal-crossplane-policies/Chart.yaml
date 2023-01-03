@@ -1,0 +1,21 @@
+apiVersion: v2
+name: universal-crossplane-policies
+description: A Weaveworks Helm chart of Policies for the universal-crossplane Profile
+type: application
+version: 0.0.1
+kubeVersion: ">=1.16.0-0"
+home: https://github.com/weavegitops/catalog
+sources:
+  - "https://weavegitops.github.io/catalog"
+
+keywords:
+- crossplane
+- policies
+
+maintainers:
+  - name: Weaveworks
+    email: support@weave.works
+
+annotations:
+  "weave.works/profile": universal-crossplane-policies
+  "weave.works/category": Policies
