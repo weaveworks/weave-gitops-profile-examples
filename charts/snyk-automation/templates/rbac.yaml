@@ -1,0 +1,62 @@
+# CONFIRMED: tekton-trigger-sa is used by eventlistener
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: snyk-triggers-sa
+  namespace: tekton-pipelines
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: snyk-eventlistener-binding
+  namespace: tekton-pipelines
+subjects:
+- kind: ServiceAccount
+  name: snyk-triggers-sa
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: tekton-triggers-eventlistener-roles
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: snyk-eventlistener-clusterbinding
+subjects:
+- kind: ServiceAccount
+  name: snyk-triggers-sa
+  namespace: tekton-pipelines
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: tekton-triggers-eventlistener-clusterroles
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: snyk-pipeline
+  namespace: tekton-pipelines
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: snyk-clusterrole
+rules:
+  - apiGroups: ['*']
+    resources: ['*']
+    verbs: ['*']
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: snyk-scan-clusterrolebinding
+roleRef:
+  kind: ClusterRole
+  name: snyk-clusterrole
+  apiGroup: rbac.authorization.k8s.io
+subjects:
+  - kind: ServiceAccount
+    name: snyk-pipeline
+    namespace: tekton-pipelines
+...

@@ -1,0 +1,15 @@
+# CONFIRMED: TriggerBiding is used by EventListener, passes revision, repo and namespace
+---
+apiVersion: triggers.tekton.dev/v1beta1
+kind: TriggerBinding
+metadata:
+  name: flux-snyk-triggerbinding
+  namespace: tekton-pipelines
+spec:
+  params:
+  - name: revision
+    value: $(body.metadata.revision)
+  - name: repository
+    value: $(body.involvedObject.name)
+  - name: namespace
+    value: $(body.involvedObject.namespace)

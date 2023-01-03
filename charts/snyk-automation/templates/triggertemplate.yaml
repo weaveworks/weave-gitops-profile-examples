@@ -1,0 +1,34 @@
+# CONFIRMED: triggertemplate receives proper parameters, calls buildpack-build pipeline and creates a new pip0eline run
+---
+apiVersion: triggers.tekton.dev/v1beta1
+kind: TriggerTemplate
+metadata:
+  name: flux-snyk-triggertemplate
+  namespace: tekton-pipelines
+spec:
+  params:
+    - name: revision
+    - name: repository
+    - name: namespace
+  resourcetemplates:
+    - apiVersion: tekton.dev/v1beta1
+      kind: PipelineRun
+      metadata:
+        generateName: snyk-scan-$(tt.params.repository)-
+      spec:
+        serviceAccountName: snyk-pipeline
+        pipelineRef:
+          name: snyk-scan
+        workspaces:
+        - name: snyk-workspace
+          subPath: source
+          persistentVolumeClaim:
+            claimName: snyk-source-pvc
+        params:
+          - name: repository
+            value: '$(tt.params.repository)'
+          - name: revision
+            value: '$(tt.params.revision)'
+          - name: namespace
+            value: '$(tt.params.namespace)'
+        
