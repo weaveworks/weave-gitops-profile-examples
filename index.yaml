@@ -951,6 +951,39 @@ entries:
     urls:
     - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/prometheus-0.0.7/prometheus-0.0.7.tgz
     version: 0.0.7
+  snyk-automation:
+  - annotations:
+      weave.works/category: security
+      weave.works/links: |
+        - name: Chart Sources
+          url: https://weave.works
+        - name: Upstream Project
+          url: https://snyk.io/
+      weave.works/operator: "true"
+      weave.works/profile: snyk-automation
+      weave.works/profile-ci: |
+        - "gke"
+        - "kind"
+        - "eks"
+    apiVersion: v2
+    created: "2023-01-03T15:34:44.546043255Z"
+    description: A Weaveworks Helm chart for a Snyk Scan Automation (using Tekton)
+    digest: 66efb469162cecd942928d3af2de5499046819d7f28f8ed339c5467ac09b365e
+    keywords:
+    - snyk
+    - tekston-pipelines
+    - security
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: snyk-automation
+    sources:
+    - https://weave.works
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/snyk-automation-0.0.1/snyk-automation-0.0.1.tgz
+    version: 0.0.1
   tekton-automation:
   - annotations:
       weave.works/category: CICD
