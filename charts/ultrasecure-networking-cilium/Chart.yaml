@@ -1,0 +1,36 @@
+apiVersion: v2
+name: ultrasecure-networking-cilium
+description: A Weaveworks Helm chart for the Cilium Profile
+type: application
+version: 0.0.1
+dependencies:
+  - name: cilium
+    version: "1.12.4"
+    repository: "https://helm.cilium.io"
+kubeVersion: ">=1.16.0-0"
+home: https://github.com/weavegitops/catalog
+sources:
+  - https://helm.cilium.io
+
+keywords:
+- networking
+- ultrasecure
+- cilium
+- mesh
+
+maintainers:
+  - name: Weaveworks
+    email: support@weave.works
+
+annotations:
+  "weave.works/profile": ultrasecure-networking-cilium
+  "weave.works/category": networking
+  "weave.works/links": |
+    - name: Chart Sources
+      url: https://helm.cilium.io
+    - name: Upstream Project
+      url: https://github.com/cilium/cilium
+  "weave.works/profile-ci": |
+    - "gke"
+    - "kind"
+    - "eks"
