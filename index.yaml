@@ -675,6 +675,111 @@ entries:
     urls:
     - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/metallb-0.0.1/metallb-0.0.1.tgz
     version: 0.0.1
+  observability-grafana:
+  - annotations:
+      weave.works/category: Observability
+      weave.works/links: |
+        - name: Chart Sources
+          url: https://charts.bitnami.com/bitnami
+        - name: Upstream Project
+          url: https://github.com/bitnami/containers/tree/main/bitnami/grafana
+      weave.works/operator: "true"
+      weave.works/profile: observability-grafana
+      weave.works/profile-ci: |-
+        - "gke"
+        - "kind"
+        - "eks"
+    apiVersion: v2
+    created: "2023-01-03T17:07:36.840485707Z"
+    dependencies:
+    - name: grafana
+      repository: https://charts.bitnami.com/bitnami
+      version: 8.2.11
+    description: A Weaveworks Helm chart for the grafana Profile using the Bitnami
+      Helm Repo
+    digest: 39d5333436b8f1860b44e0e61b8a83534e6ed76f71677e2d96ff86d4526d4f9d
+    home: https://github.com/weaveworks/profiles-catalog
+    keywords:
+    - analytics
+    - monitoring
+    - metrics
+    - logs
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: observability-grafana
+    sources:
+    - https://charts.bitnami.com/bitnami
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/observability-grafana-0.0.1/observability-grafana-0.0.1.tgz
+    version: 0.0.1
+  observability-kube-prometheus:
+  - annotations:
+      weave.works/category: Observability
+      weave.works/links: |
+        - name: Chart Sources
+          url: https://charts.bitnami.com/bitnami
+        - name: Upstream Project
+          url: https://github.com/bitnami/containers/tree/main/bitnami/prometheus-operator
+      weave.works/operator: "true"
+      weave.works/profile: observability-kube-prometheus
+      weave.works/profile-ci: |-
+        - "gke"
+        - "kind"
+        - "eks"
+    apiVersion: v2
+    created: "2023-01-03T17:07:37.05816314Z"
+    dependencies:
+    - name: kube-prometheus
+      repository: https://charts.bitnami.com/bitnami
+      version: 8.1.11
+    description: A Weaveworks Helm chart for the kube-prometheus Profile
+    digest: 208a2f440b53ae07bcf165eea23191e8e54cc05c88855b793524e5f685ef181f
+    home: https://github.com/weaveworks/profiles-catalog
+    keywords:
+    - prometheus
+    - alertmanager
+    - operator
+    - monitoring
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: observability-kube-prometheus
+    sources:
+    - https://charts.bitnami.com/bitnami
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/observability-kube-prometheus-0.0.1/observability-kube-prometheus-0.0.1.tgz
+    version: 0.0.1
+  observability-kube-prometheus-policies:
+  - annotations:
+      weave.works/category: Observability
+      weave.works/profile: observability-kube-prometheus-policies
+    apiVersion: v2
+    created: "2023-01-03T17:07:37.25646779Z"
+    description: A Weaveworks Helm chart of Policies for the Kube-Prometheus Profile
+    digest: 1fb28d4b6c9ee8ec5e4d2fbe788eefe8b3325c115bbe53d5e164223b544d6e8f
+    home: https://github.com/weaveworks/profiles-catalog
+    keywords:
+    - grafana
+    - prometheus
+    - observability
+    - kuberentes
+    - policies
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: observability-kube-prometheus-policies
+    sources:
+    - https://github.com/weaveworks/profiles-catalog
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/observability-kube-prometheus-policies-0.0.1/observability-kube-prometheus-policies-0.0.1.tgz
+    version: 0.0.1
   ondat:
   - annotations:
       weave.works/category: Storage
