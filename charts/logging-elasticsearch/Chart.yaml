@@ -1,0 +1,35 @@
+apiVersion: v2
+name: logging-elasticsearch
+description: A Weaveworks Helm chart for the elasticsearch Profile
+type: application
+version: 0.0.1
+dependencies:
+  - name: elasticsearch
+    version: "19.4.4"
+    repository: "https://charts.bitnami.com/bitnami"
+kubeVersion: ">=1.16.0-0"
+home: https://github.com/weavegitops/catalog
+sources:
+  - https://charts.bitnami.com/bitnami
+
+keywords:
+- elasticsearch
+
+
+maintainers:
+  - name: Weaveworks
+    email: support@weave.works
+
+annotations:
+  "weave.works/profile": logging-elasticsearch
+  "weave.works/category": Logging
+  "weave.works/operator": "true"
+  "weave.works/links": |
+    - name: Chart Sources
+      url: https://charts.bitnami.com/bitnami
+    - name: Upstream Project
+      url: https://github.com/bitnami/containers/tree/main/bitnami/elasticsearch
+  "weave.works/profile-ci": |
+    - "gke"
+    - "kind"
+    - "eks"
