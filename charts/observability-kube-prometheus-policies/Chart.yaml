@@ -1,0 +1,24 @@
+apiVersion: v2
+name: observability-kube-prometheus-policies
+description: A Weaveworks Helm chart of Policies for the Kube-Prometheus Profile
+type: application
+version: 0.0.1
+kubeVersion: ">=1.16.0-0"
+home: https://github.com/weaveworks/profiles-catalog
+sources:
+  - "https://github.com/weaveworks/profiles-catalog"
+
+keywords:
+- grafana
+- prometheus
+- observability
+- kuberentes
+- policies
+
+maintainers:
+  - name: Weaveworks
+    email: support@weave.works
+
+annotations:
+  "weave.works/profile": observability-kube-prometheus-policies
+  "weave.works/category": Observability
