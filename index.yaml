@@ -1158,6 +1158,94 @@ entries:
     urls:
     - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/tekton-stack-0.0.2/tekton-stack-0.0.2.tgz
     version: 0.0.2
+  ultrasecure-accesscontrol-policies:
+  - annotations:
+      weave.works/category: Policies
+      weave.works/profile: ultrasecure-accesscontrol-policies
+    apiVersion: v2
+    appVersion: 1.0.0
+    created: "2023-01-03T17:12:53.193226659Z"
+    description: A Wewave Policy chart for Ultra Secure Access Control Policies
+    digest: b3023f92c9d9450bf5f5379dfaf0dd96a71b1a115f676f7de8875d27c400c99f
+    home: https://github.com/weavegitops/catalog
+    keywords:
+    - rbac
+    - security
+    - policies
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: ultrasecure-accesscontrol-policies
+    sources:
+    - https://weavegitops.github.io/catalog
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/ultrasecure-accesscontrol-policies-0.0.2/ultrasecure-accesscontrol-policies-0.0.2.tgz
+    version: 0.0.2
+  ultrasecure-networking-cilium:
+  - annotations:
+      weave.works/category: networking
+      weave.works/links: |
+        - name: Chart Sources
+          url: https://helm.cilium.io
+        - name: Upstream Project
+          url: https://github.com/cilium/cilium
+      weave.works/profile: ultrasecure-networking-cilium
+      weave.works/profile-ci: |-
+        - "gke"
+        - "kind"
+        - "eks"
+    apiVersion: v2
+    created: "2023-01-03T17:12:53.3345567Z"
+    dependencies:
+    - name: cilium
+      repository: https://helm.cilium.io
+      version: 1.12.4
+    description: A Weaveworks Helm chart for the Cilium Profile
+    digest: 34bc4c4c0c6e16bb749b3c342ad2b667b86bf2ce2a121b70b69e63c50344fb80
+    home: https://github.com/weavegitops/catalog
+    keywords:
+    - networking
+    - ultrasecure
+    - cilium
+    - mesh
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: ultrasecure-networking-cilium
+    sources:
+    - https://helm.cilium.io
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/ultrasecure-networking-cilium-0.0.1/ultrasecure-networking-cilium-0.0.1.tgz
+    version: 0.0.1
+  ultrasecure-networking-policies:
+  - annotations:
+      weave.works/category: Policies
+      weave.works/profile: ultrasecure-networking-policies
+    apiVersion: v2
+    appVersion: 1.0.0
+    created: "2023-01-03T17:12:53.490832768Z"
+    description: A Wewave Policy chart for Ultra Secure Network Policies
+    digest: 74a6d9e5e501e952278a35c9917f900c9213c3b1cf0e63e7711de23f774514c2
+    home: https://github.com/weavegitops/catalog
+    keywords:
+    - rbac
+    - security
+    - policies
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: ultrasecure-networking-policies
+    sources:
+    - https://weavegitops.github.io/catalog
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/ultrasecure-networking-policies-0.0.1/ultrasecure-networking-policies-0.0.1.tgz
+    version: 0.0.1
   universal-crossplane:
   - apiVersion: v1
     appVersion: 1.10.1-up.1
