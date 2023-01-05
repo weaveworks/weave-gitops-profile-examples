@@ -1,0 +1,11 @@
+nfs-subdir-external-provisioner:
+  nfs:
+    #nfs server IP address: Demo2: 147.28.139.93 and Demo3: 147.28.139.50
+    server: 147.28.139.93
+    path: /nfs
+  storageClass:
+    onDelete: retain
+    reclaimPolicy: Retain
+    archiveOnDelete: false
+    pathPattern: "default_cluster-${.PVC.namespace}-${.PVC.name}"
+
