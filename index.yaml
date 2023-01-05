@@ -1059,6 +1059,39 @@ entries:
   snyk-automation:
   - annotations:
       weave.works/category: security
+      weave.works/layer: layer-2
+      weave.works/links: |
+        - name: Chart Sources
+          url: https://weave.works
+        - name: Upstream Project
+          url: https://snyk.io/
+      weave.works/operator: "true"
+      weave.works/profile: snyk-automation
+      weave.works/profile-ci: |
+        - "gke"
+        - "kind"
+        - "eks"
+    apiVersion: v2
+    created: "2023-01-05T16:23:07.197391662Z"
+    description: A Weaveworks Helm chart for a Snyk Scan Automation (using Tekton)
+    digest: b3eeb2c6c465ce0ece669756c36972d9fe7f3d89f59aedb64be10a409cecf63f
+    keywords:
+    - snyk
+    - tekston-pipelines
+    - security
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: snyk-automation
+    sources:
+    - https://weave.works
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/snyk-automation-0.0.2/snyk-automation-0.0.2.tgz
+    version: 0.0.2
+  - annotations:
+      weave.works/category: security
       weave.works/links: |
         - name: Chart Sources
           url: https://weave.works
@@ -1090,6 +1123,41 @@ entries:
     - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/snyk-automation-0.0.1/snyk-automation-0.0.1.tgz
     version: 0.0.1
   tekton-automation:
+  - annotations:
+      weave.works/category: CICD
+      weave.works/layer: layer-2
+      weave.works/links: |
+        - name: Chart Sources
+          url: https://weave.works
+        - name: Upstream Project
+          url: https://github.com/tektoncd/
+      weave.works/operator: "true"
+      weave.works/profile: tekton-automation
+      weave.works/profile-ci: |
+        - "gke"
+        - "kind"
+        - "eks"
+    apiVersion: v2
+    created: "2023-01-05T16:23:07.434304771Z"
+    description: A Weaveworks Helm chart for a Cloudnative Buildpacks and Tekton Automation
+      Framework
+    digest: 52da298d6d5b3f45ae2f6fa5545ae4ae58ce266fb2142daa6772a6a81c595a12
+    home: https://github.com/murillodigital/gitops-profiles
+    keywords:
+    - tekton
+    - tekton-pipelines
+    - cicd
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: tekton-automation
+    sources:
+    - https://weave.works
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/tekton-automation-0.0.8/tekton-automation-0.0.8.tgz
+    version: 0.0.8
   - annotations:
       weave.works/category: CICD
       weave.works/links: |
@@ -1125,6 +1193,40 @@ entries:
     - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/tekton-automation-0.0.7/tekton-automation-0.0.7.tgz
     version: 0.0.7
   tekton-stack:
+  - annotations:
+      weave.works/category: CICD
+      weave.works/layer: layer-1
+      weave.works/links: |
+        - name: Chart Sources
+          url: https://tekton.io
+        - name: Upstream Project
+          url: https://github.com/tektoncd/
+      weave.works/operator: "true"
+      weave.works/profile: tekton-stack
+      weave.works/profile-ci: |
+        - "gke"
+        - "kind"
+        - "eks"
+    apiVersion: v2
+    created: "2023-01-05T16:23:07.706175129Z"
+    description: A Weaveworks Helm chart for the Full Tekton Stack
+    digest: 5c495904d3cd3a138bf7f342c394fab13d6619f2e292aae4c81217d6f52687eb
+    home: https://github.com/murillodigital/gitops-profiles
+    keywords:
+    - tekton
+    - tekton-pipelines
+    - cicd
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: tekton-stack
+    sources:
+    - https://tektonio
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/tekton-stack-0.0.3/tekton-stack-0.0.3.tgz
+    version: 0.0.3
   - annotations:
       weave.works/category: CICD
       weave.works/links: |
