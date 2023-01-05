@@ -2,7 +2,7 @@ apiVersion: v2
 name: tekton-automation
 description: A Weaveworks Helm chart for a Cloudnative Buildpacks and Tekton Automation Framework
 type: application
-version: 0.0.7
+version: 0.0.8
 kubeVersion: ">=1.16.0-0"
 home: https://github.com/murillodigital/gitops-profiles
 sources:
@@ -21,6 +21,7 @@ annotations:
   "weave.works/profile": tekton-automation
   "weave.works/category": CICD
   "weave.works/operator": "true"
+  "weave.works/layer": layer-2
   "weave.works/links": |
     - name: Chart Sources
       url: https://weave.works

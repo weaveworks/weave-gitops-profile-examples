@@ -2,7 +2,7 @@ apiVersion: v2
 name: snyk-automation
 description: A Weaveworks Helm chart for a Snyk Scan Automation (using Tekton)
 type: application
-version: 0.0.1
+version: 0.0.2
 kubeVersion: ">=1.16.0-0"
 sources:
   - https://weave.works
@@ -19,6 +19,7 @@ maintainers:
 annotations:
   "weave.works/profile": snyk-automation
   "weave.works/category": security
+  "weave.works/layer": layer-2
   "weave.works/operator": "true"
   "weave.works/links": |
     - name: Chart Sources
