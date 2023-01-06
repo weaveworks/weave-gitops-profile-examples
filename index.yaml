@@ -675,6 +675,42 @@ entries:
     urls:
     - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/metallb-0.0.1/metallb-0.0.1.tgz
     version: 0.0.1
+  nfs-server:
+  - annotations:
+      weave.works/category: Storage
+      weave.works/layer: layer-1
+      weave.works/links: |
+        - name: Chart Sources
+          url:  https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
+        - name: Upstream Project
+          url: https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner/tree/master/charts/nfs-subdir-external-provisioner
+      weave.works/profile: nfs-server
+      weave.works/profile-ci: |
+        - "gke"
+    apiVersion: v2
+    created: "2023-01-06T10:47:38.431866532Z"
+    dependencies:
+    - name: nfs-subdir-external-provisioner
+      repository: https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
+      version: 4.0.17
+    description: A Weaveworks Helm chart for nfs-server storage controller
+    digest: b31f1d5dcc3bec97eccbd87a6d23fb319cbe0a1bab4097ca9ea400787a5ca232
+    home: https://github.com/weaveworks/profiles-catalog
+    keywords:
+    - storage
+    - nfs
+    - nfs-server
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: nfs-server
+    sources:
+    - https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/nfs-server-0.0.1/nfs-server-0.0.1.tgz
+    version: 0.0.1
   observability-grafana:
   - annotations:
       weave.works/category: Observability
