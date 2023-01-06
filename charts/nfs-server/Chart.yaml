@@ -1,0 +1,31 @@
+apiVersion: v2
+name: nfs-server
+description: A Weaveworks Helm chart for nfs-server storage controller
+type: application
+version: 0.0.1
+kubeVersion: ">=1.16.0-0"
+home: https://github.com/weaveworks/profiles-catalog
+sources:
+  - https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
+keywords:
+- storage
+- nfs
+- nfs-server
+maintainers:
+  - name: Weaveworks
+    email: support@weave.works
+annotations:
+  "weave.works/profile": nfs-server
+  "weave.works/category": Storage
+  "weave.works/layer": layer-1
+  "weave.works/links": |
+    - name: Chart Sources
+      url:  https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
+    - name: Upstream Project
+      url: https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner/tree/master/charts/nfs-subdir-external-provisioner
+  "weave.works/profile-ci": |
+    - "gke"
+dependencies:
+- name: nfs-nfs-subdir-external-provisioner
+  version: "4.0.17"
+  repository: "https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/"
