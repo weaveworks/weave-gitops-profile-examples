@@ -1104,6 +1104,38 @@ entries:
         - "gke"
         - "kind"
     apiVersion: v2
+    created: "2023-02-03T00:07:56.979905983Z"
+    description: A Weaveworks Helm chart to configure secret stores and secrets using
+      External Secrets Operator
+    digest: d523410e53181038b5cfcae061797a45b435190ce7c3ec6f927ffc7019c75801
+    home: https://github.com/weaveworks/profiles-catalog
+    icon: https://raw.githubusercontent.com/external-secrets/external-secrets/main/assets/round_eso_logo.png
+    keywords:
+    - external-secrets
+    - secrets-manager
+    - parameter-store
+    - azure-key-vault
+    - vault
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: secrets-store-config
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/secrets-store-config-0.0.1/secrets-store-config-0.0.1.tgz
+    version: 0.0.1
+  - annotations:
+      weave.works/category: Secrets Management
+      weave.works/layer: layer-4
+      weave.works/links: |
+        - name: Upstream Project
+          url: https://github.com/external-secrets/external-secrets
+      weave.works/profile: external-secrets-store-config
+      weave.works/profile-ci: |
+        - "gke"
+        - "kind"
+    apiVersion: v2
     created: "2023-02-02T23:47:32.100234632Z"
     description: A Weaveworks Helm chart to configure secret stores and secrets using
       External Secrets Operator
