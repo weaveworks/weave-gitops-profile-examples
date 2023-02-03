@@ -1095,6 +1095,38 @@ entries:
   secrets-store-config:
   - annotations:
       weave.works/category: Secrets Management
+      weave.works/layer: layer-1
+      weave.works/links: |
+        - name: Upstream Project
+          url: https://github.com/external-secrets/external-secrets
+      weave.works/profile: external-secrets-store-config
+      weave.works/profile-ci: |
+        - "gke"
+        - "kind"
+    apiVersion: v2
+    created: "2023-02-03T01:13:01.166796751Z"
+    description: A Weaveworks Helm chart to configure secret stores and secrets using
+      External Secrets Operator
+    digest: b30daf6112a597d72dfe38bea69ff3bcf2b1be7cd1a29b53258b98d1e47c1123
+    home: https://github.com/weaveworks/profiles-catalog
+    icon: https://raw.githubusercontent.com/external-secrets/external-secrets/main/assets/round_eso_logo.png
+    keywords:
+    - external-secrets
+    - secrets-manager
+    - parameter-store
+    - azure-key-vault
+    - vault
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: secrets-store-config
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/secrets-store-config-0.0.2/secrets-store-config-0.0.2.tgz
+    version: 0.0.2
+  - annotations:
+      weave.works/category: Secrets Management
       weave.works/layer: layer-4
       weave.works/links: |
         - name: Upstream Project
