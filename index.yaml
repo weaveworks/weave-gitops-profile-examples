@@ -294,6 +294,47 @@ entries:
     urls:
     - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/elk-stack-0.0.7/elk-stack-0.0.7.tgz
     version: 0.0.7
+  external-dns:
+  - annotations:
+      weave.works/category: Infrastructure
+      weave.works/layer: layer-2
+      weave.works/links: |
+        - name: Chart Sources
+          url: https://charts.bitnami.com/bitnami
+        - name: Upstream Project
+          url: https://github.com/bitnami/charts/tree/main/bitnami/external-dns
+      weave.works/operator: "true"
+      weave.works/profile: external-dns
+      weave.works/profile-ci: |
+        - "gke"
+        - "kind"
+    apiVersion: v2
+    created: "2023-02-04T11:06:10.979446514Z"
+    dependencies:
+    - name: external-dns
+      repository: https://charts.bitnami.com/bitnami
+      version: v6.13.2
+    description: A Weaveworks Helm chart for external-dns
+    digest: b7e232c23f11d13721757dcb6960f527dc1527b846b3fbac7bc1e8fd9d9dace3
+    home: https://github.com/weaveworks/profiles-catalog
+    keywords:
+    - external-dns
+    - dns
+    - hosts
+    - domains
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: external-dns
+    sources:
+    - https://charts.bitnami.com/bitnami
+    - https://github.com/bitnami/containers/tree/main/bitnami/external-dns
+    - https://github.com/kubernetes-sigs/external-dns
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/external-dns-0.0.1/external-dns-0.0.1.tgz
+    version: 0.0.1
   external-secrets:
   - annotations:
       weave.works/category: Secrets Management
