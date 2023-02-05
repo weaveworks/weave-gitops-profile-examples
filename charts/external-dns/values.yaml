@@ -7,3 +7,13 @@ external-dns:
 #  aws:
 #    credentials:
 #      secretName: aws-route53
+
+# Create an external-secret to obtain aws credentials
+#external-secret:
+#  create: true
+#  secretName: aws-route53
+#  secretKey: credentials
+#  clusterSecretStore:
+#    name: aws-secretmanager
+#  secretManager:
+#    path: demo/external-dns/aws-route53
