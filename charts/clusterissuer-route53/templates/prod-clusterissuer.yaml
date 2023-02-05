@@ -7,14 +7,12 @@ spec:
     server: https://acme-v02.api.letsencrypt.org/directory
     email: {{ .Values.clusterIssuerEmail }}
     privateKeySecretRef:
-      name: letsencrypt-staging
+      name: letsencrypt-prod
     solvers:
       - dns01:
           route53:
-            region: eu-central-1
-            accessKeyID:
-              name: {{ .Values.externalSecret.secretName }}
-              key: access-key-id
+            region: {{ .Values.region }}
+            accessKeyID: {{ .Values.accessKeyId }}
             secretAccessKeySecretRef:
               name: {{ .Values.externalSecret.secretName }}
               key: secret-access-key
