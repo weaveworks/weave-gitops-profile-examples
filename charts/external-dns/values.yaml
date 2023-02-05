@@ -9,7 +9,8 @@ external-dns:
 #      secretName: aws-route53
 
 # Create an external-secret to obtain aws credentials
-#external-secret:
+external-secret:
+  create: false
 #  create: true
 #  secretName: aws-route53
 #  secretKey: credentials
