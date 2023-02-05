@@ -92,6 +92,42 @@ entries:
         - "gke"
         - "kind"
     apiVersion: v2
+    created: "2023-02-05T23:20:31.493525981Z"
+    description: A Weaveworks Helm chart for a cert manager cluster issuer using DNS01
+      validation with route53
+    digest: c7308a074f7267fa5f77148938b14b2ad458d892e9582f4f0b1646c250aa6a89
+    home: https://github.com/weaveworks/profiles-catalog
+    icon: https://raw.githubusercontent.com/jetstack/cert-manager/master/logo/logo.png
+    keywords:
+    - cert-manager
+    - aws
+    - route53
+    - kube-lego
+    - letsencrypt
+    - tls
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: clusterissuer-route53
+    sources:
+    - https://github.com/weaveworks/profiles-catalog
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/clusterissuer-route53-0.0.2/clusterissuer-route53-0.0.2.tgz
+    version: 0.0.2
+  - annotations:
+      weave.works/category: Certificate
+      weave.works/layer: layer-2
+      weave.works/links: |
+        - name: Chart Sources
+          url: https://github.com/weaveworks/profiles-catalog
+      weave.works/operator: "false"
+      weave.works/profile: clusterissuer-route53
+      weave.works/profile-ci: |
+        - "gke"
+        - "kind"
+    apiVersion: v2
     created: "2023-02-05T22:38:11.812550049Z"
     description: A Weaveworks Helm chart for a cert manager cluster issuer using DNS01
       validation with route53
