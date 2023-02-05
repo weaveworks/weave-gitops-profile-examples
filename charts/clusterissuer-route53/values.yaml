@@ -1,0 +1,7 @@
+clusterIssuerEmail: noreply@example.com
+externalSecret:
+  secretName: aws-route53-creds
+  clusterSecretStore:
+    name: aws-secretmanager
+  secretManager:
+    path: demo/clusterissuer/aws-route53-creds

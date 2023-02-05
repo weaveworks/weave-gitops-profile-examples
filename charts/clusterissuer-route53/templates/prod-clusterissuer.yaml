@@ -1,0 +1,20 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-prod
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: {{ .Values.clusterIssuerEmail }}
+    privateKeySecretRef:
+      name: letsencrypt-staging
+    solvers:
+      - dns01:
+          route53:
+            region: eu-central-1
+            accessKeyID:
+              name: {{ .Values.externalSecret.secretName }}
+              key: access-key-id
+            secretAccessKeySecretRef:
+              name: {{ .Values.externalSecret.secretName }}
+              key: secret-access-key
