@@ -6,3 +6,8 @@ ingress-nginx:
         networking.gke.io/load-balancer-type: "Internal"
         service.beta.kubernetes.io/azure-load-balancer-internal: "true"
         service.beta.kubernetes.io/oci-load-balancer-internal: "true"
+    metrics:
+      enabled: true
+    podAnnotations:
+      prometheus\.io/scrape: "true"
+      prometheus\.io/port: "10254"
