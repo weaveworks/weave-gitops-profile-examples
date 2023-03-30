@@ -3,12 +3,14 @@ ingress-nginx:
     service:
       annotations:
         service.beta.kubernetes.io/aws-load-balancer-internal: "false"
-        networking.gke.io/load-balancer-type: "Internal"
-        service.beta.kubernetes.io/azure-load-balancer-internal: "true"
-        service.beta.kubernetes.io/oci-load-balancer-internal: "true"
+        networking.gke.io/load-balancer-type: "External"
+        service.beta.kubernetes.io/azure-load-balancer-internal: "false"
+        service.beta.kubernetes.io/oci-load-balancer-internal: "false"
     metrics:
       enabled: true
       service:
         annotations:
           prometheus.io/scrape: "true"
           prometheus.io/port: "10254"
+    admissionWebhooks:
+      failurePolicy: Ignore
