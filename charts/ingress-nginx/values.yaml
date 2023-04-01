@@ -12,3 +12,8 @@ ingress-nginx:
         annotations:
           prometheus.io/scrape: "true"
           prometheus.io/port: "10254"
+    admissionWebhooks:
+      failurePolicy: Ignore
+    podAnnotations:
+      prometheus.io/scrape: "true"
+      prometheus.io/port: "10254"
