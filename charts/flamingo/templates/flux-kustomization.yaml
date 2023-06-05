@@ -22,7 +22,7 @@ spec:
       spec:
         sourceRef:
           kind: OCIRepository
-          name: fsa-demo
+          name: {{ include "flamingo.fullname" . }}
           namespace: {{ template "flamingo.namespace" . }}
     target:
       kind: Kustomization
