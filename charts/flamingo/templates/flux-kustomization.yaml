@@ -1,4 +1,4 @@
-apiVersion: kustomize.toolkit.fluxcd.io/v1
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
   name: {{ include "flamingo.fullname" . }}
@@ -22,7 +22,7 @@ spec:
       spec:
         sourceRef:
           kind: OCIRepository
-          name: {{ include "flamingo.fullname" . }}
+          name: fsa-demo
           namespace: {{ template "flamingo.namespace" . }}
     target:
       kind: Kustomization
