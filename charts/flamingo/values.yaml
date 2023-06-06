@@ -5,19 +5,14 @@ fullnameOverride: ""
 service:
   port: 443
 
-
 ingress:
   enabled: true
-  className: nginx
+  # className: nginx
   annotations:
+    kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: letsencrypt-prod
     nginx.ingress.kubernetes.io/backend-protocol: HTTPS
   hosts:
-    - host: flamingo.demo3.weavegitops.com
-      paths:
-        - path: /
+    - paths:
+        - path: /flamingo/?(.*)
           pathType: ImplementationSpecific
-  tls:
-   - secretName: argo-tls
-     hosts:
-       - flamingo.demo3.weavegitops.com
