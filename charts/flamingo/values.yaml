@@ -14,5 +14,5 @@ ingress:
     nginx.ingress.kubernetes.io/backend-protocol: HTTPS
   hosts:
     - paths:
-        - path: /flamingo/?(.*)
+        - path: /?(.*)
           pathType: ImplementationSpecific
