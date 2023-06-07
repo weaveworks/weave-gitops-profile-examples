@@ -7,7 +7,7 @@ metadata:
     {{- include "flamingo.labels" . | nindent 4 }}
   annotations:
     metadata.weave.works/flamingo-fsa-demo: "https://localhost:8080/applications/argocd/fsa-demo?view=tree"
-    link.argocd.argoproj.io/external-link: "http://localhost:9001/kustomize/details?clusterName=Default&name=fsa-demo&namespace=flux-system"
+    link.argocd.argoproj.io/external-link: "{{ .Values.gitopsURL }}/kustomize/details?clusterName=Default&name=fsa-demo&namespace=flux-system"
 spec:
   prune: true
   interval: 2m
