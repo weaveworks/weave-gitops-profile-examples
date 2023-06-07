@@ -762,6 +762,16 @@ entries:
   flamingo:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2023-06-07T15:27:13.077959695Z"
+    description: A Helm chart for Kubernetes
+    digest: 1fd58bdd1ecaa9d9f6b472f64685d7337064509719085cc3895608080d6f7e11
+    name: flamingo
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/flamingo-0.0.5/flamingo-0.0.5.tgz
+    version: 0.0.5
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2023-06-06T11:56:50.289547946Z"
     description: A Helm chart for Kubernetes
     digest: 8a24bbbc2f10037bd7769e92a3bf9d1c2cb47c1c02edfd4e5b0f17885a93bcde
