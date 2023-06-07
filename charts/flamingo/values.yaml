@@ -9,6 +9,8 @@ ociURL: oci://ghcr.io/steve-fraser/flamingo/manifests
 
 gitopsURL: https://demo3.weavegitops.com
 
+clusterName: ${CLUSTER_NAME}
+
 ingress:
   enabled: true
   # className: nginx
