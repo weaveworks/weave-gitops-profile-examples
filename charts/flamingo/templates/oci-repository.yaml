@@ -11,6 +11,6 @@ metadata:
     link.argocd.argoproj.io/external-link: "http://localhost:9001/oci/details?clusterName=Default&name=fsa-demo&namespace=flux-system"    
 spec:
   interval: 30s
-  url: oci://ghcr.io/flux-subsystem-argo/flamingo/manifests
+  url: {{ .Values.ociURL }}
   ref:
     tag: v2.7

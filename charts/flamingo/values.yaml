@@ -5,6 +5,8 @@ fullnameOverride: ""
 service:
   port: 443
 
+ociURL: oci://ghcr.io/steve-fraser/flamingo/manifests
+
 ingress:
   enabled: true
   # className: nginx
