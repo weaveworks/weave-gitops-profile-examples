@@ -1,1 +1,0 @@
-The nfs-server storage controller has been installed.

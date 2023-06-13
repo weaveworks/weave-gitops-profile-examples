@@ -1,9 +1,0 @@
-clusterIssuerEmail: noreply@example.com
-accessKeyId: AWS_ACCESS_KEY
-region: eu-central-1
-externalSecret:
-  secretName: aws-route53-creds
-  clusterSecretStore:
-    name: aws-secretmanager
-  secretManager:
-    path: demo/clusterissuer/aws-route53-creds
