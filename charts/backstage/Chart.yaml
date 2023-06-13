@@ -2,7 +2,7 @@ apiVersion: v2
 name: backstage
 description: A Weaveworks Helm chart for Backstage
 type: application
-version: 0.0.1
+version: 0.0.2
 dependencies:
   - name: backstage
     version: "v0.15.2"
