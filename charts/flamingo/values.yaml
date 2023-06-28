@@ -1,0 +1,24 @@
+# Flamingo 
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  port: 443
+
+ociURL: oci://ghcr.io/steve-fraser/flamingo/manifests
+
+gitopsURL: https://demo3.weavegitops.com
+
+clusterName: ${CLUSTER_NAME}
+
+ingress:
+  enabled: true
+  # className: nginx
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+  hosts:
+    - paths:
+        - path: /?(.*)
+          pathType: ImplementationSpecific
