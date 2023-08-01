@@ -1,5 +1,6 @@
 grafana:
   enabled: true
+  namespace: prometheus
 prometheus:
   enabled: true
 cloudnative-pg:

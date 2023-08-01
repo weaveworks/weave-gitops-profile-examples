@@ -3,7 +3,7 @@ name: cloudnative-pg
 icon: https://raw.githubusercontent.com/cloudnative-pg/artwork/main/cloudnativepg-logo.svg
 description: A Weaveworks Helm chart for Cloudnative Postgres
 type: application
-version: 0.0.3
+version: 0.0.4
 dependencies:
   - name: cloudnative-pg
     version: "0.17.0"
