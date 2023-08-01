@@ -151,6 +151,41 @@ entries:
     urls:
     - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/cert-manager-0.0.7/cert-manager-0.0.7.tgz
     version: 0.0.7
+  cloudnative-pg:
+  - annotations:
+      weave.works/category: Database
+      weave.works/links: |
+        - name: Chart Sources
+          url: https://cloudnative-pg.github.io/charts
+        - name: Upstream Project
+          url: https://github.com/cloudnative-pg/cloudnative-pg
+      weave.works/profile: cloudnative-pg
+      weave.works/profile-ci: |
+        - "gke"
+        - "kind"
+    apiVersion: v2
+    created: "2023-08-01T11:17:53.814876402Z"
+    dependencies:
+    - name: cloudnative-pg
+      repository: https://cloudnative-pg.github.io/charts
+      version: 0.17.0
+    description: A Weaveworks Helm chart for Cloudnative Postgres
+    digest: d1090ea841142ae27e8dffbdcfb5a5d1d8b67d8e7ccf315289eace146b8421c3
+    home: https://github.com/weaveworks/profiles-catalog
+    icon: https://raw.githubusercontent.com/cloudnative-pg/artwork/main/cloudnativepg-logo.svg
+    keywords:
+    - postgres
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: cloudnative-pg
+    sources:
+    - https://cloudnative-pg.github.io/charts
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/cloudnative-pg-0.0.1/cloudnative-pg-0.0.1.tgz
+    version: 0.0.1
   clusterissuer-route53:
   - annotations:
       weave.works/category: Certificate
