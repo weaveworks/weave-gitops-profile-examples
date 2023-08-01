@@ -1,0 +1,36 @@
+apiVersion: v2
+name: linkerd2
+icon: https://linkerd.io/images/logo-only-200h.png
+description: A Weaveworks Helm chart for the Service Mesh Profile
+type: application
+version: 0.0.16
+dependencies:
+- name: linkerd2
+  version: "2.11.2"
+  repository: "https://helm.linkerd.io/stable"
+kubeVersion: ">=1.16.0-0"
+home: https://github.com/weaveworks/profiles-catalog
+sources:
+  - https://helm.linkerd.io/stable
+
+keywords:
+- network
+- servicemesh
+- linkerd2
+
+maintainers:
+  - name: Weaveworks
+    email: support@weave.works
+
+annotations:
+  "weave.works/profile": linkerd2
+  "weave.works/category": Service Mesh
+  "weave.works/layer": layer-1
+  "weave.works/links": |
+    - name: Chart Sources
+      url:  https://helm.linkerd.io/stable
+    - name: Upstream Project
+      url: https://github.com/linkerd/linkerd2
+  "weave.works/profile-ci": |
+    - "gke"
+    - "kind"
