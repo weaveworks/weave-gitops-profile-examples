@@ -1,0 +1,33 @@
+apiVersion: v2
+name: cloudnative-pg
+icon: https://raw.githubusercontent.com/cloudnative-pg/artwork/main/cloudnativepg-logo.svg
+description: A Weaveworks Helm chart for Cloudnative Postgres
+type: application
+version: 0.0.1
+dependencies:
+  - name: cloudnative-pg
+    version: "0.17.0"
+    repository: "https://cloudnative-pg.github.io/charts"
+kubeVersion: ">=1.16.0-0"
+home: https://github.com/weaveworks/profiles-catalog
+sources:
+  - https://cloudnative-pg.github.io/charts
+
+keywords:
+- postgres
+
+maintainers:
+  - name: Weaveworks
+    email: support@weave.works
+
+annotations:
+  "weave.works/profile": cloudnative-pg
+  "weave.works/category": Database
+  "weave.works/links": |
+    - name: Chart Sources
+      url: https://cloudnative-pg.github.io/charts
+    - name: Upstream Project
+      url: https://github.com/cloudnative-pg/cloudnative-pg
+  "weave.works/profile-ci": |
+    - "gke"
+    - "kind"
