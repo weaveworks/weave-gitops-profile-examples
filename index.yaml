@@ -1,5 +1,39 @@
 apiVersion: v1
 entries:
+  aws-ebs-csi-driver:
+  - annotations:
+      weave.works/category: Infrastructure
+      weave.works/layer: layer-1
+      weave.works/links: |
+        - name: Chart Sources
+          url: https://kubernetes-sigs.github.io/aws-ebs-csi-driver
+      weave.works/operator: "true"
+      weave.works/profile: aws-ebs-csi-driver
+    apiVersion: v2
+    appVersion: 2.6.7
+    created: "2023-08-01T10:06:23.566835563Z"
+    dependencies:
+    - name: aws-ebs-csi-driver
+      repository: https://kubernetes-sigs.github.io/aws-ebs-csi-driver
+      version: 2.6.7
+    description: A Weaveworks Helm chart for the aws ebs csi driver
+    digest: 530cd8840049686bd7dccd284fd15cd3df6d644dc6b3e2501dd940efef4d4bc7
+    home: https://github.com/weaveworks/profiles-catalog
+    icon: https://raw.githubusercontent.com/aws-ebs-csi-driver/aws-ebs-csi-driver.github.io/master/assets/aws-ebs-csi-driver_logo-cb55bb5c346.png
+    keywords:
+    - operator
+    - aws-ebs-csi-driver
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: aws-ebs-csi-driver
+    sources:
+    - https://kubernetes-sigs.github.io/aws-ebs-csi-driver
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/aws-ebs-csi-driver-0.0.1/aws-ebs-csi-driver-0.0.1.tgz
+    version: 0.0.1
   backstage:
   - annotations:
       weave.works/category: Software
@@ -190,6 +224,77 @@ entries:
     urls:
     - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/clusterissuer-route53-0.0.1/clusterissuer-route53-0.0.1.tgz
     version: 0.0.1
+  consul:
+  - annotations:
+      weave.works/category: Infrastructure
+      weave.works/links: |
+        - name: Chart Sources
+          url: https://helm.releases.hashicorp.com
+        - name: Upstream Project
+          url: https://github.com/hashicorp/consul-k8s
+      weave.works/profile: consul
+      weave.works/profile-ci: |
+        - "gke"
+        - "kind"
+    apiVersion: v2
+    created: "2023-08-01T10:06:23.714518221Z"
+    dependencies:
+    - name: consul
+      repository: https://helm.releases.hashicorp.com
+      version: ~0.44.0
+    description: A Weaveworks Helm chart for the HashiCorp Consul Profile
+    digest: cb36ce7f7c5e67a2fe336490d22e8e1cbf8a26bba28c0f9743cb49f0bad4fa2e
+    home: https://github.com/weaveworks/profiles-catalog
+    icon: https://symbols.getvecta.com/stencil_77/63_consul-icon.c960aeea49.svg
+    keywords:
+    - hashicorp
+    - consul
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: consul
+    sources:
+    - https://helm.releases.hashicorp.com
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/consul-0.0.1/consul-0.0.1.tgz
+    version: 0.0.1
+  crossplane:
+  - annotations:
+      weave.works/category: Infrastructure
+      weave.works/links: |
+        - name: Chart Sources
+          url: https://charts.crossplane.io/stable
+        - name: Upstream Project
+          url: https://github.com/crossplane/crossplane
+      weave.works/profile: crossplane
+      weave.works/profile-ci: |
+        - "gke"
+        - "kind"
+    apiVersion: v2
+    created: "2023-08-01T10:06:23.838697421Z"
+    dependencies:
+    - name: crossplane
+      repository: https://charts.crossplane.io/stable
+      version: ~1.9.0
+    description: A Weaveworks Helm chart for the Crossplane Profile
+    digest: 5f72d1d4b0fd64fceb5c39121672bdda7f7f1a4852f36193e6c3edf6c4174a35
+    home: https://github.com/weaveworks/profiles-catalog
+    icon: https://crossplane.io/images/favicon_192x192.png
+    keywords:
+    - crossplane
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: crossplane
+    sources:
+    - https://charts.crossplane.io/stable
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/crossplane-0.0.6/crossplane-0.0.6.tgz
+    version: 0.0.6
   dex:
   - annotations:
       weave.works/links: |
@@ -263,6 +368,60 @@ entries:
     urls:
     - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/dex-0.0.8/dex-0.0.8.tgz
     version: 0.0.8
+  eks-addons:
+  - annotations:
+      weave.works/category: Infrastructure
+      weave.works/layer: layer-1
+      weave.works/links: |
+        - name: Chart Sources
+          url:  https://aws.github.io/eks-charts/
+      weave.works/profile: eks-addons
+    apiVersion: v2
+    created: "2023-08-01T10:06:24.064966481Z"
+    dependencies:
+    - condition: aws-load-balancer-controller.enabled
+      name: aws-load-balancer-controller
+      repository: https://aws.github.io/eks-charts
+      version: 1.4.4
+    - condition: aws-node-termination-handler.enabled
+      name: aws-node-termination-handler
+      repository: https://aws.github.io/eks-charts
+      version: 0.19.2
+    - condition: aws-ebs-csi-driver.enabled
+      name: aws-ebs-csi-driver
+      repository: file://../aws-ebs-csi-driver/
+      version: 0.0.1
+    description: A Weaveworks Helm chart for EKS add-ons
+    digest: 6e14a600b06e6ecb979bcc7f3ccc65f6826296787519ab9f154dc1c88f626894
+    home: https://github.com/weaveworks/profiles-catalog
+    icon: https://raw.githubusercontent.com/aws/eks-charts/master/docs/logo/aws.png
+    keywords:
+    - aws-node-termination-handler
+    - aws-load-balancer-controller
+    - operator
+    - aws-ebs-csi-driver
+    - eks
+    - alb
+    - load balancer
+    - ingress
+    - nlb
+    - aws
+    - eks
+    - ec2
+    - node-termination
+    - spot
+    kubeVersion: '>=1.19.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: eks-addons
+    sources:
+    - https://aws.github.io/eks-charts/
+    - https://github.com/weaveworks/profiles-catalog
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/eks-addons-0.0.1/eks-addons-0.0.1.tgz
+    version: 0.0.1
   elk-stack:
   - annotations:
       weave.works/category: Deployment
@@ -1043,6 +1202,269 @@ entries:
     urls:
     - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/ingress-nginx-0.0.11/ingress-nginx-0.0.11.tgz
     version: 0.0.11
+  jaeger:
+  - annotations:
+      weave.works/category: Tracing
+      weave.works/links: |
+        - name: Chart Sources
+          url: https://jaegertracing.github.io/helm-charts
+        - name: Upstream Project
+          url: https://github.com/jaegertracing/jaeger-operator
+      weave.works/operator: "true"
+      weave.works/profile: jaeger
+      weave.works/profile-ci: |
+        - "gke"
+        - "kind"
+    apiVersion: v2
+    created: "2023-08-01T10:06:24.277669935Z"
+    dependencies:
+    - name: jaeger-operator
+      repository: https://jaegertracing.github.io/helm-charts/
+      version: 2.30.0
+    description: A Weaveworks Helm chart for tracing
+    digest: 785b7add97a59270253f649b6524e613141b9442953ab052787e877022d1406a
+    home: https://github.com/weaveworks/profiles-catalog
+    icon: https://www.jaegertracing.io/img/jaeger-icon-reverse-color.svg
+    keywords:
+    - operator
+    - jaeger-operator
+    - jaeger
+    - tracing
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: jaeger
+    sources:
+    - https://jaegertracing.github.io/helm-charts
+    - https://github.com/jaegertracing/jaeger-operator
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/jaeger-0.0.4/jaeger-0.0.4.tgz
+    version: 0.0.4
+  kafka:
+  - annotations:
+      weave.works/category: Streaming
+      weave.works/links: |
+        - name: Chart Sources
+          url: https://charts.bitnami.com/bitnami
+        - name: Upstream Project
+          url: https://kafka.apache.org/
+      weave.works/profile: kafka
+      weave.works/profile-ci: |
+        - "gke"
+        - "kind"
+    apiVersion: v2
+    created: "2023-08-01T10:06:24.425223491Z"
+    dependencies:
+    - name: kafka
+      repository: https://charts.bitnami.com/bitnami
+      version: 23.0.7
+    description: A Weaveworks Helm chart for Bitnami Kafka
+    digest: 2284d29aec7349f3d0294e3ce4177064007e819037a8b09b2983c27fd96b4faa
+    home: https://github.com/weaveworks/profiles-catalog
+    icon: https://bitnami.com/assets/stacks/kafka/img/kafka-stack-220x234.png
+    keywords:
+    - kafka
+    - zookeeper
+    - streaming
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: kafka
+    sources:
+    - https://github.com/bitnami/charts/tree/master/bitnami/kafka
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/kafka-0.0.5/kafka-0.0.5.tgz
+    version: 0.0.5
+  karpenter:
+  - annotations:
+      weave.works/links: |
+        - name: Chart Sources
+          url: https://github.com/aws/karpenter/tree/main/charts/karpenter
+        - name: Upstream Project
+          url: https://github.com/aws/karpenter
+      weave.works/profile: karpenter
+    apiVersion: v2
+    appVersion: 0.16.1
+    created: "2023-08-01T10:06:24.552501307Z"
+    dependencies:
+    - condition: karpenter.enabled
+      name: karpenter
+      repository: https://charts.karpenter.sh/
+      version: 0.16.1
+    description: A Weaveworks Helm chart for Karpenter, an open-source node provisioning
+      project built for Kubernetes.
+    digest: b0997242da90c67dda632e28a935a6bb04818f74af97e152f87b5dd213b2e2de
+    home: https://github.com/weaveworks/profiles-catalog
+    icon: https://repository-images.githubusercontent.com/278480393/dab059c8-caa1-4b55-aaa7-3d30e47a5616
+    keywords:
+    - karpenter
+    - node-provisioning
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: karpenter
+    sources:
+    - https://github.com/aws/karpenter/
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/karpenter-0.0.1/karpenter-0.0.1.tgz
+    version: 0.0.1
+  keycloak:
+  - annotations:
+      weave.works/category: Identity and Access Management
+      weave.works/links: |
+        - name: Chart Sources
+          url: https://charts.bitnami.com/bitnami
+        - name: Upstream Project
+          url: https://kafka.apache.org/
+      weave.works/profile: keycloak
+      weave.works/profile-ci: |
+        - "gke"
+    apiVersion: v2
+    created: "2023-08-01T10:06:24.732567503Z"
+    dependencies:
+    - name: keycloak
+      repository: https://charts.bitnami.com/bitnami
+      version: 16.0.0
+    description: A Weaveworks Helm chart for Bitnami Keycloak
+    digest: 86444ed87184b97c6f17703d17f1c5bdcb771d0ebb731e0b6353a0ee7d8df93d
+    home: https://github.com/weaveworks/profiles-catalog
+    icon: https://bitnami.com/assets/stacks/keycloak/img/keycloak-stack-220x234.png
+    keywords:
+    - keycloak
+    - identity
+    - access-management
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: keycloak
+    sources:
+    - https://github.com/bitnami/charts/tree/master/bitnami/keycloak
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/keycloak-0.0.5/keycloak-0.0.5.tgz
+    version: 0.0.5
+  kong:
+  - annotations:
+      weave.works/category: gateway
+      weave.works/layer: layer-2
+      weave.works/links: |
+        - name: Chart Sources
+          url:  https://charts.konghq.com
+        - name: Upstream Project
+          url: https://github.com/Kong/kong
+      weave.works/profile: kong
+      weave.works/profile-ci: |
+        - "gke"
+        - "kind"
+    apiVersion: v2
+    created: "2023-08-01T10:06:24.890099061Z"
+    dependencies:
+    - name: kong
+      repository: https://charts.konghq.com
+      version: v2.16.0
+    description: A Weaveworks Helm chart for the kong Profile
+    digest: 4c1d34d9118b0c4264e15bacfe3397f95d4fcb4995ac60723a3c8bcea1c7afac
+    home: https://github.com/weaveworks/profiles-catalog
+    icon: https://github.com/Kong/docs.konghq.com/blob/main/app/_assets/images/icons/policies/icon-kong-logo.png
+    keywords:
+    - api
+    - gateway
+    - kong
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: kong
+    sources:
+    - https://charts.konghq.com
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/kong-0.0.1/kong-0.0.1.tgz
+    version: 0.0.1
+  kuma:
+  - annotations:
+      weave.works/category: mesh
+      weave.works/layer: layer-2
+      weave.works/links: |
+        - name: Chart Sources
+          url:  https://github.com/kumahq/kuma
+        - name: Upstream Project
+          url: https://github.com/kuma/kuma
+      weave.works/profile: kuma
+      weave.works/profile-ci: |
+        - "gke"
+        - "kind"
+    apiVersion: v2
+    created: "2023-08-01T10:06:25.046555604Z"
+    dependencies:
+    - name: kuma
+      repository: https://kumahq.github.io/charts
+      version: v2.1.0
+    description: A Weaveworks Helm chart for the Kuma Profile
+    digest: 05b5e6e588842b6cab1b171ddd8ba2f12831c8e0504811ebdcbb2b6db82e0ddb
+    home: https://github.com/weaveworks/profiles-catalog
+    icon: https://camo.githubusercontent.com/e6cccc2091ae0e7ec3ff9f96b2bcd8899739a0089bca7a836cf0112e0b89abf3/68747470733a2f2f6b756d612d7075626c69632d6173736574732e73332e616d617a6f6e6177732e636f6d2f6b756d612d6c6f676f2d76322e706e67
+    keywords:
+    - mesh
+    - service
+    - servicemesh
+    - kuma
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: kuma
+    sources:
+    - https://github.com/kumahq/kuma
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/kuma-0.0.1/kuma-0.0.1.tgz
+    version: 0.0.1
+  linkerd2:
+  - annotations:
+      weave.works/category: Service Mesh
+      weave.works/layer: layer-1
+      weave.works/links: |
+        - name: Chart Sources
+          url:  https://helm.linkerd.io/stable
+        - name: Upstream Project
+          url: https://github.com/linkerd/linkerd2
+      weave.works/profile: linkerd2
+      weave.works/profile-ci: |
+        - "gke"
+        - "kind"
+    apiVersion: v2
+    created: "2023-08-01T10:06:25.183256051Z"
+    dependencies:
+    - name: linkerd2
+      repository: https://helm.linkerd.io/stable
+      version: 2.11.2
+    description: A Weaveworks Helm chart for the Service Mesh Profile
+    digest: 487df939a910e01fac04152362772b95837c79e4a0c4ea41a53d834577c14066
+    home: https://github.com/weaveworks/profiles-catalog
+    icon: https://linkerd.io/images/logo-only-200h.png
+    keywords:
+    - network
+    - servicemesh
+    - linkerd2
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: linkerd2
+    sources:
+    - https://helm.linkerd.io/stable
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/linkerd2-0.0.16/linkerd2-0.0.16.tgz
+    version: 0.0.16
   local-path-provisioner:
   - annotations:
       weave.works/category: Storage
@@ -1613,6 +2035,46 @@ entries:
     urls:
     - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/prometheus-0.0.7/prometheus-0.0.7.tgz
     version: 0.0.7
+  reloader:
+  - annotations:
+      weave.works/category: Deployment
+      weave.works/layer: layer-2
+      weave.works/links: |
+        - name: Chart Sources
+          url: https://stakater.github.io/stakater-charts
+        - name: Upstream Project
+          url: https://github.com/stakater/Reloader
+      weave.works/operator: "true"
+      weave.works/profile: reloader
+      weave.works/profile-ci: |
+        - "gke"
+        - "kind"
+    apiVersion: v2
+    created: "2023-08-01T10:06:25.324429164Z"
+    dependencies:
+    - name: reloader
+      repository: https://stakater.github.io/stakater-charts
+      version: v0.0.126
+    description: A Weaveworks Helm chart for the Reloader profile
+    digest: 1fa5372f7fb6705492d6490980740b0e16dc7295c7b8e8484586a1de344b790d
+    home: https://github.com/weaveworks/profiles-catalog
+    icon: https://raw.githubusercontent.com/stakater/Reloader/master/assets/web/reloader-round-100px.png
+    keywords:
+    - reloader
+    - stakater
+    - configmap
+    - secret
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: reloader
+    sources:
+    - https://stakater.github.io/stakater-charts
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/reloader-0.0.1/reloader-0.0.1.tgz
+    version: 0.0.1
   secrets-store-config:
   - annotations:
       weave.works/category: Secrets Management
@@ -1914,6 +2376,78 @@ entries:
     urls:
     - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/tekton-stack-0.0.2/tekton-stack-0.0.2.tgz
     version: 0.0.2
+  tetragon:
+  - annotations:
+      weave.works/category: Security
+      weave.works/links: |
+        - name: Chart Sources
+          url: https://github.com/cilium/tetragon
+      weave.works/profile: tetragon
+      weave.works/profile-ci: |
+        - "kind"
+        - "gke"
+    apiVersion: v2
+    created: "2023-08-01T10:06:25.453517497Z"
+    dependencies:
+    - name: tetragon
+      repository: https://helm.cilium.io
+      version: ~0.8.3
+    description: A Weaveworks Helm chart for the tetragon Profile
+    digest: ad21ae91ba7bb143962381135850ce1a2dcafdd0757f3ce5d7e3539b02ca519f
+    home: https://github.com/weaveworks/profiles-catalog
+    icon: https://github.com/cilium/tetragon/releases/download/tetragon-cli/logo-dark.png
+    keywords:
+    - tetragon
+    - security
+    - runtime
+    - ebpf
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: tetragon
+    sources:
+    - https://helm.cilium.io
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/tetragon-0.0.1/tetragon-0.0.1.tgz
+    version: 0.0.1
+  tf-controller:
+  - annotations:
+      weave.works/links: |
+        - name: Chart Sources
+          url: https://github.com/weaveworks/tf-controller
+        - name: Upstream Project
+          url: https://github.com/weaveworks/tf-controller
+      weave.works/operator: "true"
+      weave.works/profile: tf-controller
+      weave.works/profile-ci: |
+        - "gke"
+        - "kind"
+    apiVersion: v2
+    created: "2023-08-01T10:06:25.593517793Z"
+    dependencies:
+    - condition: tf-controller.enabled
+      name: tf-controller
+      repository: https://weaveworks.github.io/tf-controller/
+      version: 0.8.0
+    description: A Weaveworks Helm chart for tf-controller
+    digest: 7d07dd9e252b4bfff79b193336481aa207f172797a585ab617a2cb8d61eb38fd
+    home: https://github.com/weaveworks/profiles-catalog
+    keywords:
+    - terraform
+    - gitops
+    kubeVersion: '>=1.17.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: tf-controller
+    sources:
+    - https://github.com/weaveworks/tf-controller
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/tf-controller-0.0.4/tf-controller-0.0.4.tgz
+    version: 0.0.4
   ultrasecure-accesscontrol-policies:
   - annotations:
       weave.works/category: Policies
@@ -2045,6 +2579,42 @@ entries:
     urls:
     - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/universal-crossplane-1.10.1-up.1/universal-crossplane-1.10.1-up.1.tgz
     version: 1.10.1-up.1
+  vault:
+  - annotations:
+      weave.works/category: Infrastructure
+      weave.works/links: |
+        - name: Chart Sources
+          url: https://helm.releases.hashicorp.com
+        - name: Upstream Project
+          url: https://github.com/hashicorp/vault-k8s
+      weave.works/profile: vault
+      weave.works/profile-ci: |
+        - "gke"
+        - "kind"
+    apiVersion: v2
+    created: "2023-08-01T10:06:25.727751303Z"
+    dependencies:
+    - name: vault
+      repository: https://helm.releases.hashicorp.com
+      version: ~0.20.1
+    description: A Weaveworks Helm chart for the HashiCorp Vault Profile
+    digest: 76f48752d423c33f3d75c906e92784aace3128e92b68f229e6859480eaac1db0
+    home: https://github.com/weaveworks/profiles-catalog
+    icon: https://www.datocms-assets.com/2885/1620155128-brandhcvaultverticalcolor.svg
+    keywords:
+    - hashicorp
+    - vault
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: vault
+    sources:
+    - https://helm.releases.hashicorp.com
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/vault-0.0.1/vault-0.0.1.tgz
+    version: 0.0.1
   weave-policy-agent:
   - annotations:
       weave.works/category: Policy
