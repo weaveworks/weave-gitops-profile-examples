@@ -1,0 +1,29 @@
+apiVersion: v2
+name: yunikorn
+description: A Weaveworks Helm chart for Yunikorn
+type: application
+version: 0.0.1
+dependencies:
+  - name: yunikorn
+    version: "1.2.0"
+    repository: "https://apache.github.io/yunikorn-release"
+kubeVersion: ">=1.16.0-0"
+home: https://github.com/weaveworks/profiles-catalog
+sources:
+  - https://apache.github.io/yunikorn-release
+
+keywords:
+- spark
+
+maintainers:
+  - name: Weaveworks
+    email: support@weave.works
+
+annotations:
+  "weave.works/profile": yunikorn
+  "weave.works/category": Scheduler
+  "weave.works/links": |
+    - name: Chart Sources
+      url: https://apache.github.io/yunikorn-release
+  "weave.works/profile-ci": |
+    - "kind"

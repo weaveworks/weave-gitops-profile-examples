@@ -1,0 +1,29 @@
+apiVersion: v2
+name: kubecost
+description: A Weaveworks Helm chart for Kubecost
+type: application
+version: 0.0.1
+dependencies:
+  - name: cost-analyzer
+    version: "1.103.2"
+    repository: "oci://public.ecr.aws/kubecost"
+kubeVersion: ">=1.16.0-0"
+home: https://github.com/weaveworks/profiles-catalog
+sources:
+  - https://github.com/kubecost/cost-analyzer-helm-chart
+
+keywords:
+- kubecost
+
+maintainers:
+  - name: Weaveworks
+    email: support@weave.works
+
+annotations:
+  "weave.works/profile": kubecost
+  "weave.works/category": Costs
+  "weave.works/links": |
+    - name: Chart Sources
+      url: https://github.com/kubecost/cost-analyzer-helm-chart
+  "weave.works/profile-ci": |
+    - "kind"

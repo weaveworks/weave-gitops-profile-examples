@@ -1,0 +1,29 @@
+apiVersion: v2
+name: jupyterhub
+description: A Weaveworks Helm chart for Jupyterhub
+type: application
+version: 0.0.1
+dependencies:
+  - name: jupyterhub
+    version: "3.0.0-beta.1"
+    repository: "https://jupyterhub.github.io/helm-chart/"
+kubeVersion: ">=1.16.0-0"
+home: https://github.com/weaveworks/profiles-catalog
+sources:
+  - https://jupyterhub.github.io/helm-chart/
+
+keywords:
+- jupyterhub
+
+maintainers:
+  - name: Weaveworks
+    email: support@weave.works
+
+annotations:
+  "weave.works/profile": jupyterhub
+  "weave.works/category": Notebook
+  "weave.works/links": |
+    - name: Chart Sources
+      url: https://jupyterhub.github.io/helm-chart/
+  "weave.works/profile-ci": |
+    - "kind"

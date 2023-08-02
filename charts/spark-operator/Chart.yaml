@@ -1,0 +1,29 @@
+apiVersion: v2
+name: spark-operator
+description: A Weaveworks Helm chart for Spark Operator
+type: application
+version: 0.0.1
+dependencies:
+  - name: spark-operator
+    version: "1.1.27"
+    repository: "https://googlecloudplatform.github.io/spark-on-k8s-operator"
+kubeVersion: ">=1.16.0-0"
+home: https://github.com/weaveworks/profiles-catalog
+sources:
+  - https://googlecloudplatform.github.io/spark-on-k8s-operator
+
+keywords:
+- spark
+
+maintainers:
+  - name: Weaveworks
+    email: support@weave.works
+
+annotations:
+  "weave.works/profile": spark
+  "weave.works/category": Database
+  "weave.works/links": |
+    - name: Chart Sources
+      url: https://googlecloudplatform.github.io/spark-on-k8s-operator
+  "weave.works/profile-ci": |
+    - "kind"
