@@ -1379,6 +1379,37 @@ entries:
     urls:
     - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/jaeger-0.0.4/jaeger-0.0.4.tgz
     version: 0.0.4
+  jupyterhub:
+  - annotations:
+      weave.works/category: Notebook
+      weave.works/links: |
+        - name: Chart Sources
+          url: https://jupyterhub.github.io/helm-chart/
+      weave.works/profile: jupyterhub
+      weave.works/profile-ci: |
+        - "kind"
+    apiVersion: v2
+    created: "2023-08-02T15:52:34.168883987Z"
+    dependencies:
+    - name: jupyterhub
+      repository: https://jupyterhub.github.io/helm-chart/
+      version: 3.0.0-beta.1
+    description: A Weaveworks Helm chart for Jupyterhub
+    digest: 8909816cca77c4bfe5ed5e2d9a9ed7237a5f658f484000519af29ca347f1b416
+    home: https://github.com/weaveworks/profiles-catalog
+    keywords:
+    - jupyterhub
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: jupyterhub
+    sources:
+    - https://jupyterhub.github.io/helm-chart/
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/jupyterhub-0.0.1/jupyterhub-0.0.1.tgz
+    version: 0.0.1
   kafka:
   - annotations:
       weave.works/category: Streaming
@@ -1524,6 +1555,37 @@ entries:
     type: application
     urls:
     - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/kong-0.0.1/kong-0.0.1.tgz
+    version: 0.0.1
+  kubecost:
+  - annotations:
+      weave.works/category: Costs
+      weave.works/links: |
+        - name: Chart Sources
+          url: https://github.com/kubecost/cost-analyzer-helm-chart
+      weave.works/profile: kubecost
+      weave.works/profile-ci: |
+        - "kind"
+    apiVersion: v2
+    created: "2023-08-02T15:52:34.402712275Z"
+    dependencies:
+    - name: cost-analyzer
+      repository: oci://public.ecr.aws/kubecost
+      version: 1.103.2
+    description: A Weaveworks Helm chart for Kubecost
+    digest: d36acfc16e60b050976f2a0c22441877b3e2f1bf1c076021690999c5e370acc3
+    home: https://github.com/weaveworks/profiles-catalog
+    keywords:
+    - kubecost
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: kubecost
+    sources:
+    - https://github.com/kubecost/cost-analyzer-helm-chart
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/kubecost-0.0.1/kubecost-0.0.1.tgz
     version: 0.0.1
   kuma:
   - annotations:
@@ -2415,6 +2477,68 @@ entries:
     type: application
     urls:
     - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/snyk-automation-0.0.1/snyk-automation-0.0.1.tgz
+    version: 0.0.1
+  spark-history-server:
+  - annotations:
+      weave.works/category: Database
+      weave.works/links: |
+        - name: Chart Sources
+          url: https://hyper-mesh.github.io/spark-history-server
+      weave.works/profile: spark-history-server
+      weave.works/profile-ci: |
+        - "kind"
+    apiVersion: v2
+    created: "2023-08-02T15:52:34.570146723Z"
+    dependencies:
+    - name: spark-history-server
+      repository: https://hyper-mesh.github.io/spark-history-server
+      version: 1.0.0
+    description: A Weaveworks Helm chart for Spark History Server
+    digest: 591b4ee28e1ebcfd264f47fc031d308ba7d1595a1a87d576ea446c3e8a882fad
+    home: https://github.com/weaveworks/profiles-catalog
+    keywords:
+    - spark
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: spark-history-server
+    sources:
+    - https://hyper-mesh.github.io/spark-history-server
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/spark-history-server-0.0.1/spark-history-server-0.0.1.tgz
+    version: 0.0.1
+  spark-operator:
+  - annotations:
+      weave.works/category: Database
+      weave.works/links: |
+        - name: Chart Sources
+          url: https://googlecloudplatform.github.io/spark-on-k8s-operator
+      weave.works/profile: spark
+      weave.works/profile-ci: |
+        - "kind"
+    apiVersion: v2
+    created: "2023-08-02T15:52:34.725516064Z"
+    dependencies:
+    - name: spark-operator
+      repository: https://googlecloudplatform.github.io/spark-on-k8s-operator
+      version: 1.1.27
+    description: A Weaveworks Helm chart for Spark Operator
+    digest: 647f28db8aa68308b80bfae2db4cba2c02526affc1e9736e3f0e51e85ee3b23d
+    home: https://github.com/weaveworks/profiles-catalog
+    keywords:
+    - spark
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: spark-operator
+    sources:
+    - https://googlecloudplatform.github.io/spark-on-k8s-operator
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/spark-operator-0.0.1/spark-operator-0.0.1.tgz
     version: 0.0.1
   tekton-automation:
   - annotations:
@@ -3353,4 +3477,35 @@ entries:
     urls:
     - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/weave-policy-agent-0.1.0/weave-policy-agent-0.1.0.tgz
     version: 0.1.0
+  yunikorn:
+  - annotations:
+      weave.works/category: Scheduler
+      weave.works/links: |
+        - name: Chart Sources
+          url: https://apache.github.io/yunikorn-release
+      weave.works/profile: yunikorn
+      weave.works/profile-ci: |
+        - "kind"
+    apiVersion: v2
+    created: "2023-08-02T15:52:34.910077389Z"
+    dependencies:
+    - name: yunikorn
+      repository: https://apache.github.io/yunikorn-release
+      version: 1.2.0
+    description: A Weaveworks Helm chart for Yunikorn
+    digest: 07eefcd7281235bf05f84d2f7f5b0cd9848a639016aa6456608a9ab648352e2e
+    home: https://github.com/weaveworks/profiles-catalog
+    keywords:
+    - spark
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: support@weave.works
+      name: Weaveworks
+    name: yunikorn
+    sources:
+    - https://apache.github.io/yunikorn-release
+    type: application
+    urls:
+    - https://github.com/weaveworks/weave-gitops-profile-examples/releases/download/yunikorn-0.0.1/yunikorn-0.0.1.tgz
+    version: 0.0.1
 generated: "2021-12-01T18:52:06.205575002Z"
