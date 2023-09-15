@@ -1,0 +1,42 @@
+gloo-platform:
+  extAuthService:
+    enabled: true
+    apiKeyStorage:
+      enabled: false
+  rateLimiter:
+    enabled: true
+  demo: 
+    manageAddonNamespace: true    
+  licensing:
+    # glooMeshLicenseKey: $GLOO_MESH_LICENSE_KEY
+    licenseSecretName: license-keys
+  common:
+    cluster: cluster-1
+  glooAgent:
+    enabled: true
+    relay:
+      serverAddress: gloo-mesh-mgmt-server.gloo-mesh:9900
+  glooMgmtServer:
+    enabled: true
+    registerCluster: true
+    serviceType: ClusterIP
+    createGlobalWorkspace: true
+  glooUi:
+    enabled: true
+  istioInstallations:
+    enabled: true
+  prometheus:
+    enabled: true
+  redis:
+    deployment:
+      enabled: true
+  telemetryCollector:
+    config:
+      exporters:
+        otlp:
+          endpoint: gloo-telemetry-gateway.gloo-mesh:4317
+    enabled: true
+  telemetryGateway:
+    enabled: true
+    service:
+      type: ClusterIP

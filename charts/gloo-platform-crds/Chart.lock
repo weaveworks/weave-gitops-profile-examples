@@ -1,0 +1,6 @@
+dependencies:
+- name: gloo-platform-crds
+  repository: https://storage.googleapis.com/gloo-platform/helm-charts
+  version: 2.4.0
+digest: sha256:46252eb4ee31b176a96feebb69ff928416a8259a91f946982ca928ba29ff0a8a
+generated: "2023-09-14T17:04:17.603616539Z"

@@ -1,0 +1,6 @@
+dependencies:
+- name: gloo-platform
+  repository: https://storage.googleapis.com/gloo-platform/helm-charts
+  version: 2.4.0
+digest: sha256:645a0e759fd49d0d269ef9920f28f38ddedd1024250dd4d638dad11742fdaa49
+generated: "2023-09-14T17:12:46.137722813Z"

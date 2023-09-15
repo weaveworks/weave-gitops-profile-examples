@@ -1,0 +1,21 @@
+apiVersion: v2
+name: gloo-platform-crds
+description: A Weaveworks Helm chart for gloo-platform-crds
+type: application
+version: 0.0.1
+kubeVersion: ">=1.16.0-0"
+
+
+maintainers:
+  - name: Weaveworks
+    email: support@weave.works
+
+annotations:
+  "weave.works/profile": gloo-platform-crds
+  "weave.works/category": Ingress
+  "weave.works/layer": layer-1
+
+dependencies:
+- name: gloo-platform-crds
+  version: "2.4.0"
+  repository: "https://storage.googleapis.com/gloo-platform/helm-charts"
