@@ -1,0 +1,13 @@
+clusterIssuerEmail: no-reply@weave.works
+dnsZone: cx.weave.works
+accessKeyId: 
+  enabled: false
+  value: AWS_ACCESS_KEY
+region: us-west-1
+externalSecret:
+  create: false
+  secretName: aws-route53-creds
+  clusterSecretStore:
+    name: aws-secretmanager
+  secretManager:
+    path: demo/clusterissuer/aws-route53-creds
